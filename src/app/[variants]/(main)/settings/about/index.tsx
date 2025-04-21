@@ -77,7 +77,8 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
             ]}
           />
           <Divider style={{ marginBlock: 0 }} />
-          <div className={styles.title}>{t('information')}</div>
+          {/* NOTE(lsh): 隐藏社区资讯 */}
+          {/* <div className={styles.title}>{t('information')}</div>
           <AboutList
             ItemRender={ItemCard}
             grid
@@ -115,7 +116,7 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
               },
             ]}
           />
-          <Divider style={{ marginBlock: 0 }} />
+          <Divider style={{ marginBlock: 0 }} /> */}
           <div className={styles.title}>{t('legal')}</div>
           <AboutList
             ItemRender={ItemLink}
