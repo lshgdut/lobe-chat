@@ -23,7 +23,7 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 export const useCategory = () => {
   const { t } = useTranslation('setting');
   const mobile = useServerConfigStore((s) => s.isMobile);
-  const { enableWebrtc, showLLM, enableSTT, hideDocs } =
+  const { enableWebrtc, showLLM, enableSTT } =
     useServerConfigStore(featureFlagsSelectors);
 
   const cateItems: MenuProps['items'] = useMemo(
@@ -126,7 +126,7 @@ export const useCategory = () => {
             </Link>
           ),
         },
-        !hideDocs && {
+        {
           icon: <Icon icon={Info} />,
           key: SettingsTabs.About,
           label: (
