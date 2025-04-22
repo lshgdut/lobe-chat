@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import { BRANDING_EMAIL, BRANDING_NAME, SOCIAL_URL } from '@/const/branding';
-import { BLOG, OFFICIAL_SITE, PRIVACY_URL, TERMS_URL, mailTo } from '@/const/url';
+import { BLOG, /* OFFICIAL_SITE,  */PRIVACY_URL, TERMS_URL, mailTo } from '@/const/url';
 import { useServerConfigStore } from '@/store/serverConfig';
 import { serverConfigSelectors } from '@/store/serverConfig/selectors';
 
@@ -47,26 +47,27 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
           <AboutList
             ItemRender={ItemLink}
             items={[
-              {
-                href: OFFICIAL_SITE,
-                label: t('officialSite'),
-                value: 'officialSite',
-              },
+              // NOTE(lsh): 隐藏官网和商务邮箱
+              // {
+              //   href: OFFICIAL_SITE,
+              //   label: t('officialSite'),
+              //   value: 'officialSite',
+              // },
               {
                 href: mailTo(BRANDING_EMAIL.support),
                 label: t('mail.support'),
                 value: 'support',
-              },
-              {
-                href: mailTo(BRANDING_EMAIL.business),
-                label: t('mail.business'),
-                value: 'business',
+              // },
+              // {
+              //   href: mailTo(BRANDING_EMAIL.EMAIL_BUSINESS),
+              //   label: t('mail.business'),
+              //   value: 'business',
               },
             ]}
           />
           <Divider style={{ marginBlock: 0 }} />
           {/* NOTE(lsh): 隐藏社区资讯 */}
-          {false && <> 
+          {false && <>
           <div className={styles.title}>{t('information')}</div>
           <AboutList
             ItemRender={ItemCard}
@@ -105,8 +106,10 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
               },
             ]}
           />
-          <Divider style={{ marginBlock: 0 }} /> 
+          <Divider style={{ marginBlock: 0 }} />
           </>}
+          {/* NOTE(lsh): 隐藏法律声明 */}
+          {false && <>
           <div className={styles.title}>{t('legal')}</div>
           <AboutList
             ItemRender={ItemLink}
@@ -123,6 +126,8 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
               },
             ]}
           />
+          </>
+          }
         </Flexbox>
       </Form.Group>
       {enabledTelemetryChat && <Analytics />}
