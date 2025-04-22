@@ -59,9 +59,11 @@ const Version = memo<{ mobile?: boolean }>(({ mobile }) => {
       </Flexbox>
       <Flexbox flex={mobile ? 1 : undefined} gap={8} horizontal>
         {/* NOTE(lsh): 隐藏更新日志 */}
-        {/* <Link href={CHANGELOG_URL} style={{ flex: 1 }} target={'_blank'}>
+        {false && 
+        <Link href={CHANGELOG_URL} style={{ flex: 1 }} target={'_blank'}>
           <Button block={mobile}>{t('changelog')}</Button>
-        </Link> */}
+        </Link> 
+        }
         {hasNewVersion && (
           <Link href={MANUAL_UPGRADE_URL} style={{ flex: 1 }} target={'_blank'}>
             <Button block={mobile} type={'primary'}>
