@@ -12,11 +12,11 @@ import { BRANDING_NAME } from '@/const/branding';
 import {
   BLOG,
   DISCORD,
-  EMAIL_BUSINESS,
+  // EMAIL_BUSINESS,
   EMAIL_SUPPORT,
   GITHUB,
   MEDIDUM,
-  OFFICIAL_SITE,
+  // OFFICIAL_SITE,
   PRIVACY_URL,
   TERMS_URL,
   X,
@@ -59,20 +59,21 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
           <AboutList
             ItemRender={ItemLink}
             items={[
-              {
-                href: OFFICIAL_SITE,
-                label: t('officialSite'),
-                value: 'officialSite',
-              },
+              // NOTE(lsh): 隐藏官网和商务邮箱
+              // {
+              //   href: OFFICIAL_SITE,
+              //   label: t('officialSite'),
+              //   value: 'officialSite',
+              // },
               {
                 href: mailTo(EMAIL_SUPPORT),
                 label: t('mail.support'),
                 value: 'support',
-              },
-              {
-                href: mailTo(EMAIL_BUSINESS),
-                label: t('mail.business'),
-                value: 'business',
+              // },
+              // {
+              //   href: mailTo(EMAIL_BUSINESS),
+              //   label: t('mail.business'),
+              //   value: 'business',
               },
             ]}
           />
@@ -119,6 +120,8 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
           />
           <Divider style={{ marginBlock: 0 }} /> 
           </>}
+          {/* NOTE(lsh): 隐藏法律声明 */}
+          {false && <>
           <div className={styles.title}>{t('legal')}</div>
           <AboutList
             ItemRender={ItemLink}
@@ -134,7 +137,9 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
                 value: 'privacy',
               },
             ]}
-          />
+          /> 
+          </>
+          }
         </Flexbox>
       </Form.Group>
       {enabledTelemetryChat && <Analytics />}
