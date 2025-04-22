@@ -4,6 +4,7 @@ import { createStyles } from 'antd-style';
 import { memo } from 'react';
 import { Flexbox, FlexboxProps } from 'react-layout-kit';
 
+import { isCustomORG } from '@/const/version';
 import PlanTag from '@/features/User/PlanTag';
 import { useUserStore } from '@/store/user';
 import { authSelectors, userProfileSelectors } from '@/store/user/selectors';
@@ -52,7 +53,7 @@ const UserInfo = memo<UserInfoProps>(({ avatarProps, onClick, ...rest }) => {
           <div className={styles.username}>{username}</div>
         </Flexbox>
       </Flexbox>
-      {isSignedIn && <PlanTag />}
+      {!isCustomORG && isSignedIn && <PlanTag />}
     </Flexbox>
   );
 });
