@@ -6,7 +6,7 @@ import { manifestModule } from '@/server/manifest';
 
 const manifest = (): MetadataRoute.Manifest | any => {
   return manifestModule.generate({
-    description: `${BRANDING_NAME} brings you the best UI experience for ChatGPT, Claude, Gemini, and OLLaMA.`,
+    description: `${BRANDING_NAME} 为您提供最好的 AI 助理服务。`,
     icons: [
       {
         purpose: 'any',
@@ -16,7 +16,7 @@ const manifest = (): MetadataRoute.Manifest | any => {
       {
         purpose: 'maskable',
         sizes: '192x192',
-        url: '/icons/icon-192x192.maskable.png',
+        url: '/icons/icon-192x192.png',
       },
       {
         purpose: 'any',
@@ -26,7 +26,7 @@ const manifest = (): MetadataRoute.Manifest | any => {
       {
         purpose: 'maskable',
         sizes: '512x512',
-        url: '/icons/icon-512x512.maskable.png',
+        url: '/icons/icon-512x512.png',
       },
     ],
     id: kebabCase(BRANDING_NAME),
