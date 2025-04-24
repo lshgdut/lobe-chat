@@ -25,11 +25,11 @@ const HeaderAction = memo<{ className?: string }>(({ className }) => {
     s.toggleChatSideBar,
   ]);
 
-  const { isAgentEditable } = useServerConfigStore(featureFlagsSelectors);
+  const { isAgentEditable, qinglingCustomized } = useServerConfigStore(featureFlagsSelectors);
 
   return (
     <Flexbox className={className} gap={4} horizontal>
-      <ShareButton />
+      {!qinglingCustomized && <ShareButton />}
       <Tooltip hotkey={hotkey} title={t('toggleRightPanel.title', { ns: 'hotkey' })}>
         <ActionIcon
           icon={showAgentSettings ? PanelRightClose : PanelRightOpen}
