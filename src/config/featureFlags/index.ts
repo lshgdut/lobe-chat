@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { merge } from '@/utils/merge';
 
-import { DEFAULT_FEATURE_FLAGS, mapFeatureFlagsEnvToState } from './schema';
+import { DEFAULT_FEATURE_FLAGS, QINGLING_FEATURE_FLAGS, mapFeatureFlagsEnvToState } from './schema';
 import { parseFeatureFlag } from './utils/parser';
 
 const env = createEnv({
@@ -18,6 +18,13 @@ const env = createEnv({
 
 export const getServerFeatureFlagsValue = () => {
   const flags = parseFeatureFlag(env.FEATURE_FLAGS);
+
+  if (flags.qingling_customized ) {
+    return merge(
+      merge(DEFAULT_FEATURE_FLAGS, QINGLING_FEATURE_FLAGS),
+      flags
+    )
+  }
 
   return merge(DEFAULT_FEATURE_FLAGS, flags);
 };
