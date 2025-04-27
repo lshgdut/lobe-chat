@@ -94,8 +94,8 @@ export const QINGLING_FEATURE_FLAGS: IFeatureFlags = {
   webrtc_sync: false,
   pin_list: false,
 
-  language_model_settings: true,
-  provider_settings: false,
+  language_model_settings: false,
+  provider_settings: true,
 
   openai_api_key: true,
   openai_proxy_url: true,
