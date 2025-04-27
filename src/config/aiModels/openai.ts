@@ -7,11 +7,6 @@ import {
   AIText2ImageModelCard,
 } from '@/types/aiModel';
 
-import { serverFeatureFlags } from '@/config/featureFlags';
-
-const qinglingCustomized = serverFeatureFlags().qinglingCustomized
-
-
 export const openaiChatModels: AIChatModelCard[] = [
   {
     abilities: {
@@ -23,7 +18,7 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'o3 是一款全能强大的模型，在多个领域表现出色。它为数学、科学、编程和视觉推理任务树立了新标杆。它也擅长技术写作和指令遵循。用户可利用它分析文本、代码和图像，解决多步骤的复杂问题。',
     displayName: 'o3',
-    enabled: !qinglingCustomized,
+    enabled: true,
     id: 'o3',
     maxOutput: 100_000,
     pricing: {
@@ -44,7 +39,7 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'o4-mini 是我们最新的小型 o 系列模型。 它专为快速有效的推理而优化，在编码和视觉任务中表现出极高的效率和性能。',
     displayName: 'o4-mini',
-    enabled: !qinglingCustomized,
+    enabled: true,
     id: 'o4-mini',
     maxOutput: 100_000,
     pricing: {
@@ -63,7 +58,7 @@ export const openaiChatModels: AIChatModelCard[] = [
     contextWindowTokens: 1_047_576,
     description: 'GPT-4.1 是我们用于复杂任务的旗舰模型。它非常适合跨领域解决问题。',
     displayName: 'GPT-4.1',
-    enabled: !qinglingCustomized,
+    enabled: true,
     id: 'gpt-4.1',
     maxOutput: 32_768,
     pricing: {
@@ -83,7 +78,7 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'GPT-4.1 mini 提供了智能、速度和成本之间的平衡，使其成为许多用例中有吸引力的模型。',
     displayName: 'GPT-4.1 mini',
-    enabled: !qinglingCustomized,
+    enabled: true,
     id: 'gpt-4.1-mini',
     maxOutput: 32_768,
     pricing: {
@@ -297,7 +292,7 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'ChatGPT-4o 是一款动态模型，实时更新以保持当前最新版本。它结合了强大的语言理解与生成能力，适合于大规模应用场景，包括客户服务、教育和技术支持。',
     displayName: 'ChatGPT-4o',
-    enabled: !qinglingCustomized,
+    enabled: true,
     id: 'chatgpt-4o-latest',
     pricing: {
       input: 5,
