@@ -107,7 +107,7 @@ export const WebBrowsingManifest: BuiltinToolManifest = {
       },
     },
   ],
-  identifier: 'lobe-web-browsing',
+  identifier: 'builtin-web-browsing',
   meta: {
     avatar: '🌐',
     title: 'Web Browsing',
