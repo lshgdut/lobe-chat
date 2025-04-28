@@ -363,6 +363,10 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
       options?: EmbeddingsOptions,
     ): Promise<Embeddings[]> {
       try {
+        // TODO(lsh): 对于非openai的嵌入模型，需要调整默认的编码模式，待官方优化后再去掉
+        if (!payload.encoding_format && !/^text-embedding-3/.test(payload.model)) {
+          payload.encoding_format = 'float';
+        }
         const res = await this.client.embeddings.create(
           { ...payload, encoding_format: 'float', user: options?.user },
           { headers: options?.headers, signal: options?.signal },
