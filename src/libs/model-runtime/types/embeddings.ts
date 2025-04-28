@@ -4,6 +4,14 @@ export interface EmbeddingsPayload {
    * supported in `text-embedding-3` and later models.
    */
   dimensions?: number;
+
+  /**
+   * The format to return the embeddings in.
+   * `float`: Return the embeddings as a list of floats for `nomic-embed-text`, `bge-m3` etc.
+   * `base64`: Return the embeddings as a base64-encoded string for `text-embedding-3`
+   */
+  encoding_format?: 'float' | 'base64';
+
   /**
    * Input text to embed, encoded as a string or array of tokens. To embed multiple
    * inputs in a single request, pass an array of strings .
