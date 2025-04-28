@@ -347,7 +347,7 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
     ): Promise<Embeddings[]> {
       try {
         // TODO(lsh): 对于非openai的嵌入模型，需要调整默认的编码模式，待官方优化后再去掉
-        if (!payload.encoding_format && payload.model.startsWith('text-embedding-3')) {
+        if (!payload.encoding_format && !payload.model.startsWith('text-embedding-3')) {
           payload.encoding_format = 'float';
         }
         const res = await this.client.embeddings.create(
