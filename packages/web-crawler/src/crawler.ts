@@ -3,7 +3,9 @@ import { CrawlUrlRule } from './type';
 import { crawUrlRules } from './urlRules';
 import { applyUrlRules } from './utils/appUrlRules';
 
-const defaultImpls = ['jina', 'naive', 'search1api', 'browserless'] as CrawlImplType[];
+// const defaultImpls = ['jina', 'naive', 'search1api', 'browserless'] as CrawlImplType[];
+// TODO(lsh): 暂时只使用 naive
+const defaultImpls = ['naive'] as CrawlImplType[];
 
 interface CrawlOptions {
   impls?: string[];
