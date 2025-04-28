@@ -26,6 +26,7 @@ export const CATEGORY_ICON_MAP: Record<string, any> = {
 
 export const ENGINE_ICON_MAP: Record<string, string> = {
   'arxiv': '//arxiv.org/favicon.ico',
+  'baidu': '//baidu.com/favicon.ico',
   'bilibili': '//bilibili.com/favicon.ico',
   'bing': '//www.bing.com/favicon.ico',
   'brave': '//brave.com/favicon.ico',
@@ -35,7 +36,6 @@ export const ENGINE_ICON_MAP: Record<string, string> = {
   'npm': '//npmjs.com/favicon.ico',
   'qwant': '//www.qwant.com/favicon.ico',
   'youtube': '//youtube.com/favicon.ico',
-  'baidu': '//baidu.com/favicon.ico',
 };
 
 export const CRAWL_CONTENT_LIMITED_COUNT = 7000;
