@@ -33,8 +33,8 @@ const WebFavicon = ({ url, title, alt, size = 14 }: WebFaviconProps) => {
     <Image
       alt={alt || title || url}
       height={size}
-      src={imgSrc}
       onError={handleError}
+      src={imgSrc}
       style={{ borderRadius: 4 }}
       unoptimized
       width={size}
