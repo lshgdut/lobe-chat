@@ -16,7 +16,7 @@ const mixinHeaders = {
   // 连接类型
   'Connection': 'keep-alive',
   // 表明请求来自哪个站点
-  'Referer': 'https://www.google.com/',
+  'Referer': 'https://www.baidu.com/',
   // 升级不安全请求
   'Upgrade-Insecure-Requests': '1',
   // 模拟真实浏览器的 User-Agent
