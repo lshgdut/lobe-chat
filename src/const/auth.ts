@@ -9,7 +9,7 @@ export const LOBE_CHAT_OIDC_AUTH_HEADER = 'Oidc-Auth';
 
 export const OAUTH_AUTHORIZED = 'X-oauth-authorized';
 
-export const JWT_SECRET_KEY = 'LobeHub · LobeChat';
+export const JWT_SECRET_KEY = 'qing!ling@qingling';
 export const NON_HTTP_PREFIX = 'http_nosafe';
 
 /* eslint-disable typescript-sort-keys/interface */
