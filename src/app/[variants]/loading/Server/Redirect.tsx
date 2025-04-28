@@ -14,11 +14,12 @@ interface RedirectProps {
 
 const Redirect = memo<RedirectProps>(({ setLoadingStage }) => {
   const router = useRouter();
-  const [isLogin, isLoaded, isUserStateInit, isOnboard] = useUserStore((s) => [
+  const [isLogin, isLoaded, isUserStateInit, isOnboard, openLogin] = useUserStore((s) => [
     authSelectors.isLogin(s),
     authSelectors.isLoaded(s),
     s.isUserStateInit,
     s.isOnboard,
+    s.openLogin,
   ]);
 
   const navToChat = () => {
@@ -35,7 +36,9 @@ const Redirect = memo<RedirectProps>(({ setLoadingStage }) => {
 
     // this mean user is definitely not login
     if (!isLogin) {
-      navToChat();
+      // NOTE(lsh): go to signin
+      openLogin()
+      // navToChat();
       return;
     }
 
