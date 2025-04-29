@@ -42,9 +42,6 @@ export const FeatureFlagsSchema = z.object({
   // please contact us for more information: hello@lobehub.com
   commercial_hide_github: z.boolean().optional(),
   commercial_hide_docs: z.boolean().optional(),
-
-  // NOTE(lsh): add by qingling customized
-  qingling_customized: z.boolean().optional(),
 });
 
 export type IFeatureFlags = z.infer<typeof FeatureFlagsSchema>;
@@ -85,9 +82,6 @@ export const DEFAULT_FEATURE_FLAGS: IFeatureFlags = {
   // please contact us for more information: hello@lobehub.com
   commercial_hide_github: false,
   commercial_hide_docs: false,
-
-  // NOTE(lsh): add by qingling customized
-  qingling_customized: true,
 };
 
 export const QINGLING_FEATURE_FLAGS: IFeatureFlags = {
@@ -95,7 +89,7 @@ export const QINGLING_FEATURE_FLAGS: IFeatureFlags = {
   pin_list: false,
 
   language_model_settings: false,
-  provider_settings: true,
+  // provider_settings: true,
 
   openai_api_key: true,
   openai_proxy_url: true,
@@ -111,11 +105,11 @@ export const QINGLING_FEATURE_FLAGS: IFeatureFlags = {
   token_counter: false,
 
   knowledge_base: true,
-  rag_eval: false,
+  // rag_eval: false,
 
   clerk_sign_up: false,
 
-  cloud_promotion: false,
+  // cloud_promotion: false,
 
   market: false,
   speech_to_text: true,
@@ -161,7 +155,5 @@ export const mapFeatureFlagsEnvToState = (config: IFeatureFlags) => {
 
     hideGitHub: config.commercial_hide_github,
     hideDocs: config.commercial_hide_docs,
-
-    qinglingCustomized: config.qingling_customized,
   };
 };
