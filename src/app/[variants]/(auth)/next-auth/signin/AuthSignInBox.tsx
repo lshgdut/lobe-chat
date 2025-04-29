@@ -10,10 +10,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { appEnv } from '@/config/app';
+import { BRANDING_NAME } from '@/const/branding';
+import CustomLogo from '@/components/Branding/ProductLogo/Custom';
 import BrandWatermark from '@/components/BrandWatermark';
 import AuthIcons from '@/components/NextAuth/AuthIcons';
 import { DOCUMENTS_REFER_URL, PRIVACY_URL, TERMS_URL } from '@/const/url';
 import { useUserStore } from '@/store/user';
+
+const QINGLING_CUSTOMIZED = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED;
 
 const { Title, Paragraph } = Typography;
 
@@ -98,7 +103,9 @@ export default memo(() => {
     }
   };
 
-  const footerBtns = [
+  const footerBtns = QINGLING_CUSTOMIZED ? [
+    { href: TERMS_URL, id: 0, label: t('footerPageLink__terms') },
+  ] : [
     { href: DOCUMENTS_REFER_URL, id: 0, label: t('footerPageLink__help') },
     { href: PRIVACY_URL, id: 1, label: t('footerPageLink__privacy') },
     { href: TERMS_URL, id: 2, label: t('footerPageLink__terms') },
@@ -113,9 +120,9 @@ export default memo(() => {
           <div className={styles.text}>
             <Title className={styles.title} level={4}>
               <div>
-                <LobeChat size={48} />
+                {QINGLING_CUSTOMIZED ? <CustomLogo size={48}/> : <LobeChat size={48} />}
               </div>
-              {t('signIn.start.title', { applicationName: 'LobeChat' })}
+              {t('signIn.start.title', { applicationName: BRANDING_NAME })}
             </Title>
             <Paragraph className={styles.description}>{t('signIn.start.subtitle')}</Paragraph>
           </div>
@@ -149,7 +156,7 @@ export default memo(() => {
           <Col offset={4} span={8}>
             <Flex justify="right">
               {footerBtns.map((btn) => (
-                <Button key={btn.id} onClick={() => router.push(btn.href)} size="small" type="text">
+                <Button key={btn.id} onClick={() => window.open(btn.href)} size="small" type="text">
                   {btn.label}
                 </Button>
               ))}
