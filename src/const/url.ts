@@ -2,16 +2,21 @@ import qs from 'query-string';
 import urlJoin from 'url-join';
 
 import { withBasePath } from '@/utils/basePath';
-import { isDev } from '@/utils/env';
+import { isDev, isOnServerSide } from '@/utils/env';
+import { appEnv } from '@/config/app';
 
 import pkg from '../../package.json';
 import { INBOX_SESSION_ID } from './session';
 
 export const UTM_SOURCE = 'chat_preview';
 
-export const OFFICIAL_URL = 'https://lobechat.com';
-export const OFFICIAL_PREVIEW_URL = 'https://chat-preview.lobehub.com';
-export const OFFICIAL_SITE = 'https://lobehub.com';
+const BASE_URL = (isOnServerSide ? (appEnv.APP_URL || '/') : window.location.origin);
+// NOTE(lsh): change to self-host
+export const OFFICIAL_URL = BASE_URL;
+// NOTE(lsh): change to self-host
+export const OFFICIAL_PREVIEW_URL = `${BASE_URL}/preview`;
+// NOTE(lsh): change to self-host
+export const OFFICIAL_SITE = BASE_URL;
 
 export const OG_URL = '/og/cover.png?v=1';
 
@@ -38,8 +43,8 @@ export const BLOG = urlJoin(OFFICIAL_SITE, 'blog');
 export const ABOUT = OFFICIAL_SITE;
 export const FEEDBACK = pkg.bugs.url;
 export const DISCORD = 'https://discord.gg/AYFPHvv2jT';
-export const PRIVACY_URL = urlJoin(OFFICIAL_SITE, '/privacy');
-export const TERMS_URL = urlJoin(OFFICIAL_SITE, '/terms');
+export const PRIVACY_URL = urlJoin(OFFICIAL_SITE, '/privacy.html');
+export const TERMS_URL = urlJoin(OFFICIAL_SITE, '/terms.html');
 
 export const PLUGINS_INDEX_URL = 'https://chat-plugins.lobehub.com';
 
