@@ -7,6 +7,7 @@ import { memo, useRef, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import STT from 'src/features/ChatInput/ActionBar/STT';
 
+import { appEnv } from '@/config/app'
 import ActionBar from '@/features/ChatInput/ActionBar';
 import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
 import SaveTopic from '@/features/ChatInput/Topic';
@@ -19,7 +20,16 @@ import Files from './Files';
 import InputArea from './InputArea';
 import SendButton from './Send';
 
-const defaultLeftActions: ActionKeys[] = [
+const defaultLeftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
+  'model',
+  'search',
+  'fileUpload',
+  'knowledgeBase',
+  // 'history',
+  'tools',
+  // 'params',
+  // 'mainToken',
+] : [
   'model',
   'search',
   'fileUpload',
