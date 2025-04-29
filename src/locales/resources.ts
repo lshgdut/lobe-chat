@@ -15,7 +15,7 @@ export const locales = [
   // 'ru-RU',
   // 'tr-TR',
   'zh-CN',
-  // 'zh-TW',
+  'zh-TW',
   // 'vi-VN',
   // 'fa-IR',
 ] as const;
@@ -54,10 +54,10 @@ export const localeOptions: LocaleOptions = [
   {
     label: '简体中文',
     value: 'zh-CN',
-  // },
-  // {
-  //   label: '繁體中文',
-  //   value: 'zh-TW',
+  },
+  {
+    label: '繁體中文',
+    value: 'zh-TW',
   // },
   // {
   //   label: '日本語',
