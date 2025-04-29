@@ -2,6 +2,7 @@
 
 import { memo } from 'react';
 
+import { appEnv } from '@/config/app'
 import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
 import DesktopChatInput, { FooterRender } from '@/features/ChatInput/Desktop';
 import { useGlobalStore } from '@/store/global';
@@ -10,7 +11,17 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import Footer from './Footer';
 import TextArea from './TextArea';
 
-const leftActions = [
+const leftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
+  'model',
+  'search',
+  'fileUpload',
+  'knowledgeBase',
+  // 'params',
+  // 'history',
+  'stt',
+  'tools',
+  // 'mainToken',
+] : [
   'model',
   'search',
   'fileUpload',
@@ -20,7 +31,7 @@ const leftActions = [
   'stt',
   'tools',
   'mainToken',
-] as ActionKeys[];
+];
 
 const rightActions = ['clear'] as ActionKeys[];
 

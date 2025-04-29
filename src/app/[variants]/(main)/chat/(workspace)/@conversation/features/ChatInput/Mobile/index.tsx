@@ -6,6 +6,7 @@ import { TextAreaRef } from 'antd/es/input/TextArea';
 import { memo, useRef, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
+import { appEnv } from '@/config/app'
 import ActionBar from '@/features/ChatInput/ActionBar';
 import STT from '@/features/ChatInput/ActionBar/STT';
 import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
@@ -19,7 +20,16 @@ import Files from './Files';
 import InputArea from './InputArea';
 import SendButton from './Send';
 
-const defaultLeftActions: ActionKeys[] = [
+const defaultLeftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
+  'model',
+  'search',
+  'fileUpload',
+  'knowledgeBase',
+  // 'history',
+  'tools',
+  // 'params',
+  // 'mainToken',
+] : [
   'model',
   'search',
   'fileUpload',
