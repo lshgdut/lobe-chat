@@ -1,9 +1,9 @@
-import { serverFeatureFlags } from '@/config/featureFlags';
+import { appEnv } from '@/config/app'
 import Common from './features/Common';
 import Theme from './features/Theme';
 
 const Page = () => {
-  const qinglingCustomized = serverFeatureFlags().qinglingCustomized
+  const qinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED
   return (
     <>
       <Theme />
