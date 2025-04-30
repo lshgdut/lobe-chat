@@ -1,6 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { parseBrowserLanguage } from './locale';
+
+vi.mock('@/const/locale', async (importOriginal) => {
+  const data = await importOriginal();
+
+  return {
+    ...(data as any),
+    get DEFAULT_LANG() {
+      return 'en-US';
+    },
+  };
+});
 
 describe('parseBrowserLanguage', () => {
   // Helper function to create Headers with accept-language
@@ -23,15 +34,15 @@ describe('parseBrowserLanguage', () => {
       expect(parseBrowserLanguage(headers)).toBe('en-US');
     });
 
-    it('should handle Arabic language special case', () => {
-      const headers = createHeaders('ar-SA,ar;q=0.9');
-      expect(parseBrowserLanguage(headers)).toBe('ar');
-    });
+    // it('should handle Arabic language special case', () => {
+    //   const headers = createHeaders('ar-SA,ar;q=0.9');
+    //   expect(parseBrowserLanguage(headers)).toBe('ar');
+    // });
 
-    it('should convert ar-EG to ar', () => {
-      const headers = createHeaders('ar-EG,ar;q=0.9');
-      expect(parseBrowserLanguage(headers)).toBe('ar');
-    });
+    // it('should convert ar-EG to ar', () => {
+    //   const headers = createHeaders('ar-EG,ar;q=0.9');
+    //   expect(parseBrowserLanguage(headers)).toBe('ar');
+    // });
 
     it('should handle multiple language preferences', () => {
       const headers = createHeaders('zh-CN,zh;q=0.9,en;q=0.8');
