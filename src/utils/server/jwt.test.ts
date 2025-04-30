@@ -23,6 +23,9 @@ vi.mock('@/const/auth', async (importOriginal) => {
 
 vi.mock('@/config/app', () => ({
   getAppConfig: vi.fn(),
+  get isQinglingCustomized () {
+    return false
+  }
 }));
 
 describe('getJWTPayload', () => {

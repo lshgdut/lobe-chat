@@ -100,3 +100,5 @@ export const getAppConfig = () => {
 };
 
 export const appEnv = getAppConfig();
+
+export const isQinglingCustomized = !!(appEnv.QINGLING_CUSTOMIZED || appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED);
