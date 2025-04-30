@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it, vi } from 'vitest';
 
+import { locales as allLocales } from '@/locales/resources';
 import { getCanonicalUrl } from '@/server/utils/url';
 import { AssistantCategory, PluginCategory } from '@/types/discover';
 
@@ -73,7 +74,7 @@ describe('Sitemap', () => {
       ]);
 
       const assistantsSitemap = await sitemap.getAssistants();
-      expect(assistantsSitemap.length).toBe(15);
+      expect(assistantsSitemap.length).toBe(allLocales.length);
       expect(assistantsSitemap).toContainEqual(
         expect.objectContaining({
           url: getCanonicalUrl('/discover/assistant/test-assistant'),
@@ -82,7 +83,7 @@ describe('Sitemap', () => {
       );
       expect(assistantsSitemap).toContainEqual(
         expect.objectContaining({
-          url: getCanonicalUrl('/discover/assistant/test-assistant?hl=zh-CN'),
+          url: getCanonicalUrl('/discover/assistant/test-assistant?hl=zh-TW'),
           lastModified: '2023-01-01T00:00:00.000Z',
         }),
       );
@@ -97,7 +98,7 @@ describe('Sitemap', () => {
       ]);
 
       const pluginsSitemap = await sitemap.getPlugins();
-      expect(pluginsSitemap.length).toBe(15);
+      expect(pluginsSitemap.length).toBe(allLocales.length);
       expect(pluginsSitemap).toContainEqual(
         expect.objectContaining({
           url: getCanonicalUrl('/discover/plugin/test-plugin'),
@@ -106,7 +107,7 @@ describe('Sitemap', () => {
       );
       expect(pluginsSitemap).toContainEqual(
         expect.objectContaining({
-          url: getCanonicalUrl('/discover/plugin/test-plugin?hl=ja-JP'),
+          url: getCanonicalUrl('/discover/plugin/test-plugin?hl=zh-TW'),
           lastModified: '2023-01-01T00:00:00.000Z',
         }),
       );
@@ -121,7 +122,7 @@ describe('Sitemap', () => {
       ]);
 
       const modelsSitemap = await sitemap.getModels();
-      expect(modelsSitemap.length).toBe(15);
+      expect(modelsSitemap.length).toBe(allLocales.length);
       expect(modelsSitemap).toContainEqual(
         expect.objectContaining({
           url: getCanonicalUrl('/discover/model/test:model'),
@@ -130,7 +131,7 @@ describe('Sitemap', () => {
       );
       expect(modelsSitemap).toContainEqual(
         expect.objectContaining({
-          url: getCanonicalUrl('/discover/model/test:model?hl=ko-KR'),
+          url: getCanonicalUrl('/discover/model/test:model?hl=zh-TW'),
           lastModified: '2023-01-01T00:00:00.000Z',
         }),
       );
@@ -145,7 +146,7 @@ describe('Sitemap', () => {
       ]);
 
       const providersSitemap = await sitemap.getProviders();
-      expect(providersSitemap.length).toBe(15);
+      expect(providersSitemap.length).toBe(allLocales.length);
       expect(providersSitemap).toContainEqual(
         expect.objectContaining({
           url: getCanonicalUrl('/discover/provider/test-provider'),
@@ -154,7 +155,7 @@ describe('Sitemap', () => {
       );
       expect(providersSitemap).toContainEqual(
         expect.objectContaining({
-          url: getCanonicalUrl('/discover/provider/test-provider?hl=ar'),
+          url: getCanonicalUrl('/discover/provider/test-provider?hl=zh-TW'),
           lastModified: '2023-01-01T00:00:00.000Z',
         }),
       );
