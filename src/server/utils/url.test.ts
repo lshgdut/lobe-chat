@@ -7,13 +7,17 @@ vi.mock('url-join', () => ({
   default: vi.fn((...args) => args.join('/')),
 }));
 
+
 describe('getCanonicalUrl', () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
     // 在每个测试前重置 process.env
     vi.resetModules();
-    process.env = { ...originalEnv };
+    process.env = {
+      ...originalEnv,
+      APP_URL: 'https://lobechat.com'
+    };
   });
 
   afterEach(() => {
