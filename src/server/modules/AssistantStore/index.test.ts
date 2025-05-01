@@ -5,6 +5,17 @@ import { EdgeConfig } from '@/server/modules/EdgeConfig';
 
 import { AssistantStore } from './index';
 
+vi.mock('@/const/locale', async (importOriginal) => {
+  const data = await importOriginal();
+
+  return {
+    ...(data as any),
+    get DEFAULT_LANG() {
+      return 'en-US';
+    },
+  };
+});
+
 const baseURL = 'https://registry.npmmirror.com/@lobehub/agents-index/v1/files/public';
 
 vi.mock('@/server/modules/EdgeConfig', () => {

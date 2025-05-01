@@ -9,6 +9,17 @@ import { merge } from '@/utils/merge';
 import { initialState } from '../../../initialState';
 import { agentSelectors } from './agent';
 
+vi.mock('@/const/settings/tts', async (importOriginal) => {
+  const data = (await importOriginal()) as any;
+  const tts_config = data.DEFAULT_TTS_CONFIG;
+  return {
+    ...data,
+    get DEFAULT_TTS_CONFIG() {
+      return { ...tts_config, sttServer: 'openai' };
+    },
+  };
+});
+
 vi.mock('i18next', () => ({
   t: vi.fn((key) => key), // Simplified mock return value
 }));
@@ -23,6 +34,19 @@ const mockSessionStore = merge(initialState, {
 } as Partial<AgentState>) as unknown as AgentStore;
 
 describe('agentSelectors', () => {
+  // const originAgentTts = DEFAUTT_AGENT_TTS_CONFIG.ttsService
+  // const originTtsService = agentConfig.tts.ttsService
+
+  // beforeAll(() => {
+  //   agentConfig.tts.ttsService = 'openai'
+  //   DEFAUTT_AGENT_TTS_CONFIG.ttsService = 'openai'
+  // });
+
+  // afterEach(() => {
+  //   agentConfig.tts.ttsService = originTtsService
+  //   DEFAUTT_AGENT_TTS_CONFIG.ttsService = originAgentTts
+  // });
+
   describe('defaultAgentConfig', () => {
     it('should merge DEFAULT_AGENT_CONFIG and defaultAgent(s).config correctly', () => {
       const s = {
