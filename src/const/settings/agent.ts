@@ -1,12 +1,14 @@
 import { DEFAULT_AGENT_META } from '@/const/meta';
 import { DEFAULT_MODEL, DEFAULT_PROVIDER } from '@/const/settings/llm';
+import { DEFAULT_TTS_CONFIG } from '@/const/settings/tts';
 import { LobeAgentChatConfig, LobeAgentConfig, LobeAgentTTSConfig } from '@/types/agent';
 import { UserDefaultAgent } from '@/types/user/settings';
 
 export const DEFAUTT_AGENT_TTS_CONFIG: LobeAgentTTSConfig = {
   showAllLocaleVoice: false,
   sttLocale: 'auto',
-  ttsService: 'openai',
+  // TODO(lsh): 默认先用 edge 语音方案，需要换成私有的 tts 服务
+  ttsService: DEFAULT_TTS_CONFIG.sttServer === 'openai' ? 'openai' : 'edge',
   voice: {
     openai: 'alloy',
   },

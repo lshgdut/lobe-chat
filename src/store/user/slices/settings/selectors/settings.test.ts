@@ -4,6 +4,17 @@ import { GlobalLLMProviderKey } from '@/types/user/settings';
 import { UserStore } from '../../../store';
 import { settingsSelectors } from './settings';
 
+vi.mock('@/const/settings/tts', async (importOriginal) => {
+  const data = (await importOriginal()) as any;
+  const tts_config = data.DEFAULT_TTS_CONFIG;
+  return {
+    ...data,
+    get DEFAULT_TTS_CONFIG() {
+      return { ...tts_config, sttServer: 'openai' };
+    },
+  };
+});
+
 describe('settingsSelectors', () => {
   describe('currentSettings', () => {
     it('should merge DEFAULT_SETTINGS and s.settings correctly', () => {
