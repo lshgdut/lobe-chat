@@ -6,5 +6,5 @@ export const DEFAULT_TTS_CONFIG: UserTTSConfig = {
     ttsModel: 'tts-1',
   },
   sttAutoStop: true,
-  sttServer: 'openai',
+  sttServer: 'browser',
 };
