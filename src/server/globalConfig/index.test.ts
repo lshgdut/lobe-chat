@@ -11,6 +11,9 @@ import { parseFilesConfig } from './parseFilesConfig';
 
 vi.mock('@/envs/app', () => ({
   getAppConfig: vi.fn(),
+  get isQinglingCustomized() {
+    return false
+  }
 }));
 
 vi.mock('@/config/knowledge', () => ({
