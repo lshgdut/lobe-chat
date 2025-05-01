@@ -63,7 +63,7 @@ describe('parseDefaultThemeFromCountry', () => {
       timezones: ['America/New_York'],
     });
 
-    const mockDate = new Date('2025-04-01T12:00:00');
+    const mockDate = new Date('2025-04-01T12:00:00Z');
     vi.setSystemTime(mockDate);
 
     const request = mockRequest();
@@ -78,7 +78,7 @@ describe('parseDefaultThemeFromCountry', () => {
       timezones: ['America/New_York'],
     });
 
-    const mockDate = new Date('2025-04-01T22:00:00');
+    const mockDate = new Date('2025-04-01T22:00:00Z');
     vi.setSystemTime(mockDate);
 
     const request = mockRequest();
