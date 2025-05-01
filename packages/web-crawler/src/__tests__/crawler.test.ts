@@ -80,7 +80,7 @@ describe('Crawler', () => {
     });
 
     expect(result).toEqual({
-      crawler: 'browserless',
+      crawler: 'naive',
       data: {
         content: 'Fail to crawl the page. Error type: CrawlError, error message: Crawl failed',
         errorMessage: 'Crawl failed',
