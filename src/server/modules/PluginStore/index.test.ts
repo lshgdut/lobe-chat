@@ -3,6 +3,17 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { PluginStore } from './index';
 
+vi.mock('@/const/locale', async (importOriginal) => {
+  const data = await importOriginal();
+
+  return {
+    ...(data as any),
+    get DEFAULT_LANG() {
+      return 'en-US';
+    },
+  };
+});
+
 const baseURL = 'https://registry.npmmirror.com/@lobehub/plugins-index/v1/files/public';
 
 describe('PluginStore', () => {
