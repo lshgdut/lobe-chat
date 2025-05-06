@@ -1,8 +1,10 @@
 import dayjs from 'dayjs';
 
+import { isQinglingCustomized } from '@/config/app';
 import { BuiltinToolManifest } from '@/types/tool';
 
 import { systemPrompt } from './systemRole';
+import { systemPrompt as systemPromptCustomized } from './systemRoleCustomized';
 
 export const WebBrowsingApiName = {
   crawlMultiPages: 'crawlMultiPages',
@@ -39,7 +41,13 @@ export const WebBrowsingManifest: BuiltinToolManifest = {
           searchEngines: {
             description: 'The search engines you can use:',
             items: {
-              enum: [
+              enum: isQinglingCustomized ? [
+                'google',
+                'google scholar',
+                'bilibili',
+                'bing',
+                'baidu',
+              ] : [
                 'google',
                 'bilibili',
                 'bing',
@@ -112,6 +120,8 @@ export const WebBrowsingManifest: BuiltinToolManifest = {
     avatar: '🌐',
     title: 'Web Browsing',
   },
-  systemRole: systemPrompt(dayjs(new Date()).format('YYYY-MM-DD')),
+  systemRole: (isQinglingCustomized ? systemPromptCustomized : systemPrompt)(
+    dayjs(new Date()).format('YYYY-MM-DD')
+  ),
   type: 'builtin',
 };
