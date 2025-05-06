@@ -1,3 +1,4 @@
+import { serverFeatureFlags } from '@/config/featureFlags';
 import { edgeClient } from '@/libs/trpc/client';
 import { globalHelpers } from '@/store/global/helpers';
 import { DiscoverPlugintem } from '@/types/discover';
@@ -6,6 +7,10 @@ import { convertOpenAIManifestToLobeManifest, getToolManifest } from '@/utils/to
 class ToolService {
   getToolList = async (): Promise<DiscoverPlugintem[]> => {
     const locale = globalHelpers.getCurrentLanguage();
+
+    if (! serverFeatureFlags().enablePlugins) {
+      return []
+    }
 
     const data = await edgeClient.market.getPluginIndex.query({ locale });
 
