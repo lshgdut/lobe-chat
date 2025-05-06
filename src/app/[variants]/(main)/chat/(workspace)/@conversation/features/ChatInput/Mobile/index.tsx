@@ -7,7 +7,6 @@ import { memo, useRef, useState } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import STT from 'src/features/ChatInput/ActionBar/STT';
 
-import { appEnv } from '@/config/app'
 import ActionBar from '@/features/ChatInput/ActionBar';
 import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
 import SaveTopic from '@/features/ChatInput/Topic';
@@ -15,21 +14,13 @@ import { useSendMessage } from '@/features/ChatInput/useSend';
 import { useInitAgentConfig } from '@/hooks/useInitAgentConfig';
 import { useChatStore } from '@/store/chat';
 import { chatSelectors } from '@/store/chat/selectors';
+import { useServerConfigStore } from '@/store/serverConfig';
 
 import Files from './Files';
 import InputArea from './InputArea';
 import SendButton from './Send';
 
-const defaultLeftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
-  'model',
-  'search',
-  'fileUpload',
-  'knowledgeBase',
-  // 'history',
-  'tools',
-  // 'params',
-  // 'mainToken',
-] : [
+const defaultLeftActions: ActionKeys[] = [
   'model',
   'search',
   'fileUpload',
@@ -40,6 +31,17 @@ const defaultLeftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED 
   'mainToken',
 ];
 
+const qinglingLeftActions: ActionKeys[] = [
+  'model',
+  'search',
+  'fileUpload',
+  'knowledgeBase',
+  // 'history',
+  'tools',
+  // 'params',
+  // 'mainToken',
+];
+
 const defaultRightActions: ActionKeys[] = ['clear'];
 
 const MobileChatInput = memo(() => {
@@ -48,6 +50,8 @@ const MobileChatInput = memo(() => {
   const [expand, setExpand] = useState<boolean>(false);
   const { send: sendMessage, canSend } = useSendMessage();
   const { isLoading } = useInitAgentConfig();
+
+  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
 
   const [loading, value, onInput, onStop] = useChatStore((s) => [
     chatSelectors.isAIGenerating(s),
@@ -86,7 +90,7 @@ const MobileChatInput = memo(() => {
           <>
             <Files />
             <ActionBar
-              leftActions={defaultLeftActions}
+              leftActions={isQinglingCustomized ? qinglingLeftActions : defaultLeftActions}
               padding={'0 8px'}
               rightActions={defaultRightActions}
               rightAreaStartRender={<SaveTopic mobile />}
