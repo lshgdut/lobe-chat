@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
 
-import { isQinglingCustomized } from '@/config/app';
+import { appEnv } from '@/config/app';
 import { BuiltinToolManifest } from '@/types/tool';
 
 import { systemPrompt } from './systemRole';
 import { systemPrompt as systemPromptCustomized } from './systemRoleCustomized';
+
+const isQinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED;
 
 export const WebBrowsingApiName = {
   crawlMultiPages: 'crawlMultiPages',
