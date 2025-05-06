@@ -9,6 +9,7 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { sessionSelectors } from '@/store/session/selectors';
 import { SessionDefaultGroup } from '@/types/session';
+import { useServerConfigStore } from '@/store/serverConfig';
 
 import CollapseGroup from './CollapseGroup';
 import Actions from './CollapseGroup/Actions';
@@ -35,19 +36,21 @@ const DefaultMode = memo(() => {
     s.updateSystemStatus,
   ]);
 
+  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
+
   const items = useMemo(
     () =>
       [
         pinnedSessions &&
           pinnedSessions.length > 0 && {
             children: <SessionList dataSource={pinnedSessions} />,
-            extra: <Actions isPinned openConfigModal={() => setConfigGroupModalOpen(true)} />,
+            extra: isQinglingCustomized ? null : <Actions isPinned openConfigModal={() => setConfigGroupModalOpen(true)} />,
             key: SessionDefaultGroup.Pinned,
             label: t('pin'),
           },
         ...(customSessionGroups || []).map(({ id, name, children }) => ({
           children: <SessionList dataSource={children} groupId={id} />,
-          extra: (
+          extra: isQinglingCustomized ? null :(
             <Actions
               id={id}
               isCustomGroup
@@ -63,7 +66,7 @@ const DefaultMode = memo(() => {
         })),
         {
           children: <SessionList dataSource={defaultSessions || []} />,
-          extra: <Actions openConfigModal={() => setConfigGroupModalOpen(true)} />,
+          extra: isQinglingCustomized ? null : <Actions openConfigModal={() => setConfigGroupModalOpen(true)} />,
           key: SessionDefaultGroup.Default,
           label: t('defaultList'),
         },
