@@ -7,6 +7,15 @@ import { toolService } from '../tool';
 import openAPIV3 from './openai/OpenAPI_V3.json';
 import OpenAIPlugin from './openai/plugin.json';
 
+// Mock store and environment
+let enablePlugins = true;
+
+vi.mock('@/store/serverConfig', () => ({
+  featureFlagsSelectors: (s: any) => s,
+  useServerConfigStore: (selector: (state: any) => any) =>
+    selector({ enablePlugins: enablePlugins }),
+}));
+
 // Mocking modules and functions
 
 vi.mock('@/store/global/helpers', () => ({
