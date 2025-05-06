@@ -1,4 +1,4 @@
-import { isQinglingCustomized } from '@/config/app';
+import { appEnv } from '@/config/app';
 import { authEnv } from '@/config/auth';
 
 export const enableClerk = authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH;
@@ -10,7 +10,7 @@ export const LOBE_CHAT_OIDC_AUTH_HEADER = 'Oidc-Auth';
 
 export const OAUTH_AUTHORIZED = 'X-oauth-authorized';
 
-export const JWT_SECRET_KEY = isQinglingCustomized ? 'qing!ling@qingling' : 'LobeHub · LobeChat';
+export const JWT_SECRET_KEY = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? 'qing!ling@qingling' : 'LobeHub · LobeChat';
 
 export const NON_HTTP_PREFIX = 'http_nosafe';
 
