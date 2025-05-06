@@ -6,7 +6,6 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
-import { appEnv } from '@/config/app'
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
@@ -27,11 +26,11 @@ const HeaderAction = memo<{ className?: string }>(({ className }) => {
   ]);
 
   const { isAgentEditable } = useServerConfigStore(featureFlagsSelectors);
-  const qinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED;
+  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
 
   return (
     <Flexbox className={className} gap={4} horizontal>
-      {!qinglingCustomized && <ShareButton />}
+      {!isQinglingCustomized && <ShareButton />}
       <Tooltip hotkey={hotkey} title={t('toggleRightPanel.title', { ns: 'hotkey' })}>
         <ActionIcon
           icon={showAgentSettings ? PanelRightClose : PanelRightOpen}

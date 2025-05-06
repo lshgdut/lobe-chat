@@ -1,13 +1,13 @@
 import Appearance from './features/Appearance';
 import ChatAppearance from './features/ChatAppearance';
-import { appEnv } from '@/config/app'
+import { useServerConfigStore } from '@/store/serverConfig';
 import Common from './features/Common';
 
 const Page = () => {
-  const qinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED
+  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
   return (
     <>
-      {!qinglingCustomized && <Common />}
+      {!isQinglingCustomized && <Common />}
       <Appearance />
       <ChatAppearance />
     </>
