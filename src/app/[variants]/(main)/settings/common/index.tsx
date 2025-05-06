@@ -1,13 +1,13 @@
-import { appEnv } from '@/config/app'
+import { useServerConfigStore } from '@/store/serverConfig';
 import Common from './features/Common';
 import Theme from './features/Theme';
 
 const Page = () => {
-  const qinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED
+  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
   return (
     <>
       <Theme />
-      {!qinglingCustomized && <Common />}
+      {!isQinglingCustomized && <Common />}
     </>
   );
 };

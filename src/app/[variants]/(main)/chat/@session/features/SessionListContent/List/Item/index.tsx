@@ -10,6 +10,7 @@ import { chatSelectors } from '@/store/chat/selectors';
 import { useSessionStore } from '@/store/session';
 import { sessionHelpers } from '@/store/session/helpers';
 import { sessionMetaSelectors, sessionSelectors } from '@/store/session/selectors';
+import { useServerConfigStore } from '@/store/serverConfig';
 
 import ListItem from '../../ListItem';
 import CreateGroupModal from '../../Modals/CreateGroupModal';
@@ -26,6 +27,8 @@ const SessionItem = memo<SessionItemProps>(({ id }) => {
 
   const [active] = useSessionStore((s) => [s.activeId === id]);
   const [loading] = useChatStore((s) => [chatSelectors.isAIGenerating(s) && id === s.activeId]);
+
+  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
 
   const [pin, title, description, avatar, avatarBackground, updateAt, model, group] =
     useSessionStore((s) => {
@@ -71,7 +74,7 @@ const SessionItem = memo<SessionItemProps>(({ id }) => {
   return (
     <>
       <ListItem
-        actions={actions}
+        actions={isQinglingCustomized? null : actions}
         active={active}
         addon={addon}
         avatar={avatar}

@@ -14,7 +14,7 @@ import { parseAgentConfig } from './parseDefaultAgent';
 import { parseFilesConfig } from './parseFilesConfig';
 
 export const getServerGlobalConfig = async () => {
-  const { ACCESS_CODES, DEFAULT_AGENT_CONFIG } = getAppConfig();
+  const { ACCESS_CODES, DEFAULT_AGENT_CONFIG, QINGLING_CUSTOMIZED } = getAppConfig();
 
   const config: GlobalServerConfig = {
     aiProvider: genServerAiProvidersConfig({
@@ -55,6 +55,7 @@ export const getServerGlobalConfig = async () => {
     enabledAccessCode: ACCESS_CODES?.length > 0,
 
     enabledOAuthSSO: enableNextAuth,
+    isQinglingCustomized: QINGLING_CUSTOMIZED,
     /**
      * @deprecated
      */
