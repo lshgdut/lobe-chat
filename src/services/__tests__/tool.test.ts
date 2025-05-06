@@ -7,6 +7,15 @@ import { toolService } from '../tool';
 import openAPIV3 from './openai/OpenAPI_V3.json';
 import OpenAIPlugin from './openai/plugin.json';
 
+// Mock store and environment
+let enablePlugins = true;
+
+vi.mock('@/store/serverConfig', () => ({
+  featureFlagsSelectors: (s: any) => s,
+  useServerConfigStore: (selector: (state: any) => any) =>
+    selector({ enablePlugins: enablePlugins }),
+}));
+
 // Mocking modules and functions
 
 vi.mock('@/store/global/helpers', () => ({
@@ -49,7 +58,9 @@ describe('ToolService', () => {
     it('should handle fetch error', async () => {
       // Arrange
       (globalHelpers.getCurrentLanguage as Mock).mockReturnValue('en');
-      (edgeClient.market.getPluginIndex.query as Mock).mockRejectedValue(new Error('Network error'));
+      (edgeClient.market.getPluginIndex.query as Mock).mockRejectedValue(
+        new Error('Network error'),
+      );
 
       // Act & Assert
       await expect(toolService.getToolList()).rejects.toThrow('Network error');
