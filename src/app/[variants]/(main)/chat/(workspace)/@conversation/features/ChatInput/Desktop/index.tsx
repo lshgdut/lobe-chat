@@ -2,26 +2,16 @@
 
 import { memo } from 'react';
 
-import { appEnv } from '@/config/app'
 import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
 import DesktopChatInput, { FooterRender } from '@/features/ChatInput/Desktop';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
+import { useServerConfigStore } from '@/store/serverConfig';
 
 import Footer from './Footer';
 import TextArea from './TextArea';
 
-const leftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
-  'model',
-  'search',
-  'fileUpload',
-  'knowledgeBase',
-  // 'params',
-  // 'history',
-  'stt',
-  'tools',
-  // 'mainToken',
-] : [
+const leftActions: ActionKeys[] = [
   'model',
   'search',
   'fileUpload',
@@ -33,6 +23,18 @@ const leftActions: ActionKeys[] = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED ? [
   'mainToken',
 ];
 
+const qinglingLeftActions: ActionKeys[] = [
+  'model',
+  'search',
+  'fileUpload',
+  'knowledgeBase',
+  // 'params',
+  // 'history',
+  'stt',
+  'tools',
+  // 'mainToken',
+];
+
 const rightActions = ['clear'] as ActionKeys[];
 
 const renderTextArea = (onSend: () => void) => <TextArea onSend={onSend} />;
@@ -41,6 +43,7 @@ const renderFooter: FooterRender = ({ expand, onExpandChange }) => (
 );
 
 const Desktop = memo(() => {
+  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
   const [inputHeight, updatePreference] = useGlobalStore((s) => [
     systemStatusSelectors.inputHeight(s),
     s.updateSystemStatus,
@@ -49,7 +52,7 @@ const Desktop = memo(() => {
   return (
     <DesktopChatInput
       inputHeight={inputHeight}
-      leftActions={leftActions}
+      leftActions={isQinglingCustomized ? qinglingLeftActions : leftActions}
       onInputHeightChange={(height) => {
         updatePreference({ inputHeight: height });
       }}

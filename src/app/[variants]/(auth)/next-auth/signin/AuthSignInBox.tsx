@@ -10,15 +10,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { appEnv } from '@/config/app';
 import { BRANDING_NAME } from '@/const/branding';
 import CustomLogo from '@/components/Branding/ProductLogo/Custom';
 import BrandWatermark from '@/components/BrandWatermark';
 import AuthIcons from '@/components/NextAuth/AuthIcons';
 import { DOCUMENTS_REFER_URL, PRIVACY_URL, TERMS_URL } from '@/const/url';
+import { useServerConfigStore } from '@/store/serverConfig';
 import { useUserStore } from '@/store/user';
 
-const QINGLING_CUSTOMIZED = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED;
 
 const { Title, Paragraph } = Typography;
 
@@ -80,6 +79,8 @@ export default memo(() => {
 
   const oAuthSSOProviders = useUserStore((s) => s.oAuthSSOProviders);
 
+  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
+
   const searchParams = useSearchParams();
 
   // Redirect back to the page url
@@ -103,7 +104,7 @@ export default memo(() => {
     }
   };
 
-  const footerBtns = QINGLING_CUSTOMIZED ? [
+  const footerBtns = isQinglingCustomized ? [
     { href: TERMS_URL, id: 0, label: t('footerPageLink__terms') },
   ] : [
     { href: DOCUMENTS_REFER_URL, id: 0, label: t('footerPageLink__help') },
@@ -120,7 +121,7 @@ export default memo(() => {
           <div className={styles.text}>
             <Title className={styles.title} level={4}>
               <div>
-                {QINGLING_CUSTOMIZED ? <CustomLogo size={48}/> : <LobeChat size={48} />}
+                {isQinglingCustomized ? <CustomLogo size={48}/> : <LobeChat size={48} />}
               </div>
               {t('signIn.start.title', { applicationName: BRANDING_NAME })}
             </Title>
