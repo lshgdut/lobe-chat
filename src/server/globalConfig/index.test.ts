@@ -9,12 +9,14 @@ import { getServerDefaultAgentConfig, getServerDefaultFilesConfig } from './inde
 import { parseAgentConfig } from './parseDefaultAgent';
 import { parseFilesConfig } from './parseFilesConfig';
 
-vi.mock('@/config/app', () => ({
-  getAppConfig: vi.fn(),
-  get isQinglingCustomized() {
-    return false
-  }
-}));
+vi.mock('@/config/app', async (importOriginal) => {
+  const actual = (await importOriginal()) as any;
+  return {
+    ...actual,
+    // your mocked methods
+    getAppConfig: vi.fn(),
+  };
+});
 
 vi.mock('@/config/knowledge', () => ({
   knowledgeEnv: {
