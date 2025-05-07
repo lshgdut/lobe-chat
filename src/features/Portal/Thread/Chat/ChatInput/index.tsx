@@ -9,6 +9,7 @@ import { ActionKeys } from '@/features/ChatInput/ActionBar/config';
 import DesktopChatInput, { FooterRender } from '@/features/ChatInput/Desktop';
 import { useGlobalStore } from '@/store/global';
 import { systemStatusSelectors } from '@/store/global/selectors';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 import Footer from './Footer';
 import TextArea from './TextArea';
@@ -26,6 +27,8 @@ const Desktop = memo(() => {
     systemStatusSelectors.systemStatus(s).hideThreadLimitAlert,
     s.updateSystemStatus,
   ]);
+
+  const { enableSTT } = useServerConfigStore(featureFlagsSelectors);
 
   return (
     <>
@@ -52,7 +55,7 @@ const Desktop = memo(() => {
       )}
       <DesktopChatInput
         inputHeight={inputHeight}
-        leftActions={leftActions}
+        leftActions={enableSTT ? leftActions : leftActions.filter((action) => action !== 'stt')}
         onInputHeightChange={(height) => {
           updateSystemStatus({ threadInputHeight: height });
         }}
