@@ -22,12 +22,14 @@ vi.mock('@/const/auth', async (importOriginal) => {
   };
 });
 
-vi.mock('@/config/app', () => ({
-  getAppConfig: vi.fn(),
-  get isQinglingCustomized() {
-    return false
-  }
-}));
+vi.mock('@/config/app', async (importOriginal) => {
+  const actual = (await importOriginal()) as any;
+  return {
+    ...actual,
+    // your mocked methods
+    getAppConfig: vi.fn(),
+  };
+});
 
 describe('checkAuthMethod', () => {
   beforeEach(() => {
