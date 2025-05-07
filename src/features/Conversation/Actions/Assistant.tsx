@@ -1,9 +1,12 @@
+'use client';
+
 import { ActionIconGroup } from '@lobehub/ui';
 import type { ActionIconGroupItemType } from '@lobehub/ui';
 import { memo, useContext, useMemo } from 'react';
 
 import { useChatStore } from '@/store/chat';
 import { threadSelectors } from '@/store/chat/selectors';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 import { InPortalThreadContext } from '../components/ChatItem/InPortalThreadContext';
 import { useChatListActionsBar } from '../hooks/useChatListActionsBar';
@@ -16,6 +19,8 @@ export const AssistantActionsBar: RenderAction = memo(({ onActionClick, error, t
     !!s.activeThreadId,
     threadSelectors.hasThreadBySourceMsgId(id)(s),
   ]);
+
+  const { enableSTT } = useServerConfigStore(featureFlagsSelectors);
 
   const { regenerate, edit, delAndRegenerate, copy, divider, del, branching } =
     useChatListActionsBar({ hasThread });
@@ -38,7 +43,17 @@ export const AssistantActionsBar: RenderAction = memo(({ onActionClick, error, t
     <ActionIconGroup
       items={items}
       menu={{
-        items: [edit, copy, divider, tts, translate, divider, regenerate, delAndRegenerate, del],
+        items: [
+          edit,
+          copy,
+          divider,
+          enableSTT ? tts : null,
+          translate,
+          divider,
+          regenerate,
+          delAndRegenerate,
+          del,
+        ].filter(Boolean),
       }}
       onActionClick={onActionClick}
     />
