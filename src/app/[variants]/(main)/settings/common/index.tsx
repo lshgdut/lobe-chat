@@ -1,9 +1,12 @@
+'use client';
+
 import { useServerConfigStore } from '@/store/serverConfig';
+
 import Common from './features/Common';
 import Theme from './features/Theme';
 
 const Page = () => {
-  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
+  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
   return (
     <>
       <Theme />
