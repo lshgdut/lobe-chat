@@ -3,7 +3,7 @@
 import { Icon } from '@lobehub/ui';
 import { TabBar, type TabBarProps } from '@lobehub/ui/mobile';
 import { createStyles } from 'antd-style';
-import { Compass, MessageSquare, User } from 'lucide-react';
+import { Compass, FolderClosed, MessageSquare, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { rgba } from 'polished';
 import { memo, useMemo } from 'react';
@@ -34,7 +34,7 @@ const NavBar = memo(() => {
   const activeKey = useActiveTabKey();
   const router = useRouter();
 
-  const { showMarket } = useServerConfigStore(featureFlagsSelectors);
+  const { showMarket, enableKnowledgeBase } = useServerConfigStore(featureFlagsSelectors);
 
   const items: TabBarProps['items'] = useMemo(
     () =>
@@ -58,6 +58,16 @@ const NavBar = memo(() => {
             router.push('/discover');
           },
           title: t('tab.discover'),
+        },
+        enableKnowledgeBase && {
+          icon: (active: boolean) => (
+            <Icon className={active ? styles.active : undefined} icon={FolderClosed} />
+          ),
+          key: SidebarTabKey.Files,
+          onClick: () => {
+            router.push('/files');
+          },
+          title: t('tab.files'),
         },
         {
           icon: (active: boolean) => (
