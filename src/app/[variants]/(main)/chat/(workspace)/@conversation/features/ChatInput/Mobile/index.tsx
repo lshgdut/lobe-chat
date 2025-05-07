@@ -14,7 +14,7 @@ import { useSendMessage } from '@/features/ChatInput/useSend';
 import { useInitAgentConfig } from '@/hooks/useInitAgentConfig';
 import { useChatStore } from '@/store/chat';
 import { chatSelectors } from '@/store/chat/selectors';
-import { useServerConfigStore } from '@/store/serverConfig';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 import Files from './Files';
 import InputArea from './InputArea';
@@ -51,7 +51,8 @@ const MobileChatInput = memo(() => {
   const { send: sendMessage, canSend } = useSendMessage();
   const { isLoading } = useInitAgentConfig();
 
-  const { isQinglingCustomized } = useServerConfigStore((s)=>s.serverConfig)
+  const { enableSTT } = useServerConfigStore(featureFlagsSelectors);
+  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
 
   const [loading, value, onInput, onStop] = useChatStore((s) => [
     chatSelectors.isAIGenerating(s),
@@ -77,7 +78,7 @@ const MobileChatInput = memo(() => {
         width: '100%',
         zIndex: 101,
       }}
-      textAreaLeftAddons={<STT mobile />}
+      textAreaLeftAddons={enableSTT && <STT mobile />}
       textAreaRightAddons={
         <SendButton disabled={!canSend} loading={loading} onSend={sendMessage} onStop={onStop} />
       }
