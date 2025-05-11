@@ -1,12 +1,14 @@
 import dayjs from 'dayjs';
 
-import { appEnv } from '@/config/app';
+// import { isOnServerSide } from '@/utils/env';
+// import { appEnv } from '@/config/app';
 import { BuiltinToolManifest } from '@/types/tool';
 
 import { systemPrompt } from './systemRole';
 import { systemPrompt as systemPromptCustomized } from './systemRoleCustomized';
 
-const isQinglingCustomized = appEnv.NEXT_PUBLIC_QINGLING_CUSTOMIZED;
+
+const isQinglingCustomized = 1; //TODO(lsh): 临时强制用定制版本，避免
 
 export const WebBrowsingApiName = {
   crawlMultiPages: 'crawlMultiPages',
@@ -44,9 +46,9 @@ export const WebBrowsingManifest: BuiltinToolManifest = {
             description: 'The search engines you can use:',
             items: {
               enum: isQinglingCustomized ? [
-                'google',
-                'google scholar',
-                'bilibili',
+                // 'google',
+                // 'google scholar',
+                // 'bilibili',
                 'bing',
                 'baidu',
               ] : [
