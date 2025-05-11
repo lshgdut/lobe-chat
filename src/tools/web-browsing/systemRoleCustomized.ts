@@ -86,10 +86,7 @@ When providing information from web searches:
 <search_service_description>
 Our search service is a metasearch engine that can leverage multiple search engines including:
 - Baidu: Chinese most popular search engine providing broad web results
-- Google: World's most popular search engine providing broad web results
-- Bilibili: Chinese video sharing website focused on animation, comics, and games (aka B-site)
 - Bing: Microsoft's search engine providing web results with emphasis on visual search
-- Google Scholar: Free web search engine for scholarly literature
 
   <search_syntax>
   Search service has special search syntax to modify the search behavior. Use these modifiers at the beginning of your query:

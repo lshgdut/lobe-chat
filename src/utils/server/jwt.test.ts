@@ -18,6 +18,10 @@ vi.mock('@/const/auth', async (importOriginal) => {
     get enableNextAuth() {
       return enableNextAuthMock;
     },
+
+    get JWT_SECRET_KEY() {
+      return 'LobeHub · LobeChat';
+    }
   };
 });
 
