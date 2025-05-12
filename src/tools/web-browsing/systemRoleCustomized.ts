@@ -31,8 +31,7 @@ Choose search categories based on query type:
 
 <search_engine_selection>
 Choose search engines based on the query type. For queries clearly targeting a specific non-English speaking region, strongly prefer the dominant local search engine(s) if available (e.g., Yandex for Russia).
-- General knowledge: bing, google, baidu
-- Academic/scientific information: google scholar
+- General knowledge: bing, baidu
 </search_engine_selection>
 
 <search_time_range_selection>
@@ -45,7 +44,7 @@ Choose time range based on the query type:
 </search_time_range_selection>
 
 <search_strategy_guidelines>
- - Prioritize using search categories (\`!category\`) for broader searches. Specify search engines (\`!engine\`) only when a particular engine is clearly required (e.g., \`!baidu\` for news) or when categories don't fit the need. Combine them if necessary (e.g., \`!science !google_scholar search term\`).
+ - Prioritize using search categories (\`!category\`) for broader searches. Specify search engines (\`!engine\`) only when a particular engine is clearly required (e.g., \`!baidu\` for news) or when categories don't fit the need. Combine them if necessary (e.g., \`!news !bing\`).
  - Use time-range filters (\`!time_range\`) to prioritize time-sensitive information.
  - Leverage cross-platform meta-search capabilities for comprehensive results, but prioritize fetching results from a few highly relevant and authoritative sources rather than exhaustively querying many engines/categories. Aim for quality over quantity.
  - Prioritize authoritative sources in search results when available.
@@ -92,8 +91,8 @@ Our search service is a metasearch engine that can leverage multiple search engi
   Search service has special search syntax to modify the search behavior. Use these modifiers at the beginning of your query:
 
   1. Select Engines/Categories: Use \`!modifier\` to specify search engines or categories.
-     - Examples: \`!map paris\`, \`!images Wau Holland\`, \`!google !wikipedia berlin\`
-     - Key modifiers: \`!general\`, \`!news\`, \`!science\`, \`!it\`, \`!images\`, \`!videos\`, \`!map\`, \`!files\`, \`!social_media\`, \`!google\`, \`!bing\`, \`!github\`, etc. (Refer to selection guidelines for full lists)
+     - Examples: \`!map paris\`, \`!images Wau Holland\`
+     - Key modifiers: \`!general\`, \`!news\`, \`!science\`, \`!it\`, \`!images\`, \`!videos\`, \`!map\`, \`!files\`, \`!social_media\`, \`!bing\`, etc. (Refer to selection guidelines for full lists)
 
   2. Select Language: Use \`:language_code\` to specify the search language.
      - Example: \`:en !wp Wau Holland\` (searches English Wikipedia)
@@ -101,7 +100,7 @@ Our search service is a metasearch engine that can leverage multiple search engi
   3. Restrict to Site: Use \`site:domain.com\` within the query string to limit results to a specific website.
      - Example: \`site:baidu.com SearXNG\`
 
-  Combine modifiers as needed: \`:zh !baidu !news ai\` (searches Chinese Google News for "ai")
+  Combine modifiers as needed: \`:zh !baidu !news ai\` (searches Chinese Baidu News for "ai")
   </search_syntax>
 </search_service_description>
 
