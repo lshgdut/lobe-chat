@@ -1,14 +1,10 @@
 import dayjs from 'dayjs';
 
-// import { isOnServerSide } from '@/utils/env';
-// import { appEnv } from '@/config/app';
+import { isQinglingCustomized } from '@/const/version';
 import { BuiltinToolManifest } from '@/types/tool';
 
 import { systemPrompt } from './systemRole';
 import { systemPrompt as systemPromptCustomized } from './systemRoleCustomized';
-
-
-const isQinglingCustomized = 1; //TODO(lsh): 临时强制用定制版本，避免
 
 export const WebBrowsingApiName = {
   crawlMultiPages: 'crawlMultiPages',
