@@ -1,7 +1,7 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
-import { appEnv } from '@/config/app';
+import { isQinglingCustomized } from '@/const/version';
 import { merge } from '@/utils/merge';
 
 import { DEFAULT_FEATURE_FLAGS, QINGLING_FEATURE_FLAGS, mapFeatureFlagsEnvToState } from './schema';
@@ -20,7 +20,7 @@ const env = createEnv({
 export const getServerFeatureFlagsValue = () => {
   const flags = parseFeatureFlag(env.FEATURE_FLAGS);
 
-  if (appEnv.QINGLING_CUSTOMIZED ) {
+  if (isQinglingCustomized ) {
     return merge(
       merge(DEFAULT_FEATURE_FLAGS, QINGLING_FEATURE_FLAGS),
       flags

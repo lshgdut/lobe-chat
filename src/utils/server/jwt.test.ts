@@ -7,6 +7,17 @@ import { getJWTPayload } from './jwt';
 let enableClerkMock = false;
 let enableNextAuthMock = false;
 
+vi.mock('@/const/version', async (importOriginal) => {
+  const data = await importOriginal();
+
+  return {
+    ...(data as any),
+    get isQinglingCustomized() {
+      return false;
+    },
+  };
+});
+
 vi.mock('@/const/auth', async (importOriginal) => {
   const data = await importOriginal();
 
@@ -18,10 +29,6 @@ vi.mock('@/const/auth', async (importOriginal) => {
     get enableNextAuth() {
       return enableNextAuthMock;
     },
-
-    get JWT_SECRET_KEY() {
-      return 'LobeHub · LobeChat';
-    }
   };
 });
 
