@@ -58,6 +58,35 @@ export interface ChatTopicAction {
   internal_dispatchTopic: (payload: ChatTopicDispatch, action?: any) => void;
 }
 
+/**
+ * TODO(lsh): 针对深度思考模型，需要处理 <think> 标签</think>
+ *
+ * 移除字符串中的思考文本
+ * 该函数用于移除用户输入内容中的“思考”部分，以便进行后续处理
+ * 如果内容以 "<think>" 开头，并在适当位置以 "</think>" 结尾，则移除这部分内容
+ * 如果只有 "<think>" 而没有对应的 "</think>"，则返回 "..." 表示思考未完成
+ *
+ * @param content 用户输入的内容字符串，可能包含思考文本
+ * @returns 移除思考文本后的字符串，或者返回 "..." 如果思考文本未完成
+ */
+const removeThinkingText = (content: string) => {
+  // 检查内容是否以 "<think>" 开头
+  if (content.startsWith('<think>')) {
+    // 检查内容中是否包含结束标签 "</think>"
+    if (content.includes('</think>')) {
+      // 使用正则表达式移除思考文本部分，包括标签
+      return content.replace(/^<think>[\S\s]*?<\/think>\s*/, '')
+    } else {
+      // 如果没有找到结束标签，返回 "..." 表示思考未完成
+      return '...'
+    }
+  }
+  // 如果内容不以 "<think>" 开头，直接返回原始内容
+  else {
+    return content
+  }
+};
+
 export const chatTopic: StateCreator<
   ChatStore,
   [['zustand/devtools', never]],
@@ -153,7 +182,7 @@ export const chatTopic: StateCreator<
         internal_updateTopicTitleInSummary(topicId, topic.title);
       },
       onFinish: async (text) => {
-        await get().internal_updateTopic(topicId, { title: text });
+        await get().internal_updateTopic(topicId, { title: removeThinkingText(text) });
       },
       onLoadingChange: (loading) => {
         internal_updateTopicLoading(topicId, loading);
@@ -165,7 +194,7 @@ export const chatTopic: StateCreator<
           }
         }
 
-        internal_updateTopicTitleInSummary(topicId, output);
+        internal_updateTopicTitleInSummary(topicId, removeThinkingText(output));
       },
       params: merge(topicConfig, chainSummaryTitle(messages)),
       trace: get().getCurrentTracePayload({ traceName: TraceNameMap.SummaryTopicTitle, topicId }),
