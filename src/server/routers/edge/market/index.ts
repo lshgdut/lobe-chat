@@ -1,6 +1,7 @@
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
+import { serverFeatureFlags } from '@/config/featureFlags';
 import { DEFAULT_LANG } from '@/const/locale';
 import { publicProcedure, router } from '@/libs/trpc/edge';
 import { Locales } from '@/locales/resources';
@@ -75,6 +76,11 @@ export const marketRouter = router({
         .optional(),
     )
     .query(async ({ input }) => {
+      // NOTE(lsh): 不启用插件时，直接返回空
+      if (!serverFeatureFlags().enablePlugins) {
+        return [];
+      }
+
       const locale = input?.locale;
 
       const pluginStore = new PluginStore();
