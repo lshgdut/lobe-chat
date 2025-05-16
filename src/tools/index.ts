@@ -2,6 +2,7 @@ import { isDesktop, isQinglingCustomized } from '@/const/version';
 import { LobeBuiltinTool } from '@/types/tool';
 
 import { ArtifactsManifest } from './artifacts';
+import { CurrentTimeManifest } from './current-time';
 import { DalleManifest } from './dalle';
 import { LocalSystemManifest } from './local-system';
 import { WebBrowsingManifest } from './web-browsing';
@@ -30,4 +31,14 @@ export const builtinTools: LobeBuiltinTool[] = [
     manifest: WebBrowsingManifest,
     type: 'builtin',
   },
+  ...(isQinglingCustomized
+    ? [
+        {
+          hidden: true,
+          identifier: CurrentTimeManifest.identifier,
+          manifest: CurrentTimeManifest,
+          type: 'builtin',
+        } as LobeBuiltinTool,
+      ]
+    : []),
 ];

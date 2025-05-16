@@ -27,13 +27,15 @@ const enabledSchema =
   };
 
 const enabledSystemRoles =
-  (tools: string[] = []) =>
+  (tools: string[] = [], hasFC: boolean = false) =>
   (s: ToolStoreState) => {
     const toolsSystemRole = pluginSelectors
       .installedPluginManifestList(s)
       .concat(s.builtinTools.map((b) => b.manifest as LobeChatPluginManifest))
       // 如果存在 enabledPlugins，那么只启用 enabledPlugins 中的插件
       .filter((m) => m && tools.includes(m.identifier))
+      //  NOTE(lsh): 要么是模型支持 FC，要么是 tool 没有 api，不需要 fc 请求
+      .filter((m: LobeChatPluginManifest) => hasFC || m.api?.length === 0)
       .map((manifest) => {
         const meta = manifest.meta || {};
 
@@ -43,8 +45,8 @@ const enabledSystemRoles =
         // Use the global context manager to fill the template
         if (systemRole) {
           const context = globalAgentContextManager.getContext();
-
-          systemRole = hydrationPrompt(systemRole, context);
+          // NOTE(lsh): 增加时间变量
+          systemRole = hydrationPrompt(systemRole, {currentTime: new Date().toISOString(), ...context});
         }
 
         return {
