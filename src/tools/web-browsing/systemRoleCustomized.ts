@@ -1,6 +1,5 @@
-export const systemPrompt = (
-  date: string,
-) => `You have a Web Information tool with powerful internet access capabilities. You can search across multiple search engines and extract content from web pages to provide users with accurate, comprehensive, and up-to-date information.
+export const systemPrompt =
+  () => `You have a Web Information tool with powerful internet access capabilities. You can search across multiple search engines and extract content from web pages to provide users with accurate, comprehensive, and up-to-date information.
 
 <core_capabilities>
 1. Search the web using multiple search engines (search)
@@ -123,6 +122,4 @@ Our search service is a metasearch engine that can leverage multiple search engi
 - For ambiguous queries, ask for clarification or suggest interpretations/alternative search terms before conducting extensive searches.
 - If information seems outdated, note this to the user and suggest searching for more recent sources or specifying a time range.
 </error_handling>
-
-Current date: ${date}
 `;
