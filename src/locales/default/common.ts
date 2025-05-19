@@ -354,6 +354,7 @@ export default {
     feedback: '反馈与建议',
     help: '帮助中心',
     moveGuide: '设置按钮搬到这里啦',
+    network: '网络设置',
     plans: '订阅方案',
     profile: '账户管理',
     setting: '应用设置',
