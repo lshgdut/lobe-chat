@@ -7,6 +7,7 @@ import {
   Feather,
   FileClockIcon,
   Settings2,
+  Network,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +16,7 @@ import { CellProps } from '@/components/Cell';
 import { enableAuth } from '@/const/auth';
 import { LOBE_CHAT_CLOUD } from '@/const/branding';
 import { DOCUMENTS, FEEDBACK, OFFICIAL_URL, UTM_SOURCE } from '@/const/url';
-import { isServerMode } from '@/const/version';
+import { isServerMode, isQinglingCustomized } from '@/const/version';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 import { useUserStore } from '@/store/user';
@@ -49,6 +50,16 @@ export const useCategory = () => {
       label: t('userPanel.setting'),
       onClick: () => router.push('/me/settings'),
     },
+    ...(isQinglingCustomized ? [
+      {
+        icon: Network,
+        key: 'networkconf',
+        label: t('userPanel.network'),
+        onClick: () => {
+          window.open(`${location.origin}/networks`, '_blank')
+        },
+      },
+    ]:[]),
     {
       type: 'divider',
     },
