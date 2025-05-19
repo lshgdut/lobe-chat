@@ -14,6 +14,7 @@ import {
   LogOut,
   Mail,
   Settings2,
+  Network,
 } from 'lucide-react';
 import Link from 'next/link';
 import { PropsWithChildren, memo } from 'react';
@@ -32,7 +33,7 @@ import {
   UTM_SOURCE,
   mailTo,
 } from '@/const/url';
-import { isDesktop } from '@/const/version';
+import { isDesktop, isQinglingCustomized } from '@/const/version';
 import DataImporter from '@/features/DataImporter';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
@@ -96,6 +97,17 @@ export const useMenu = () => {
         </Link>
       ),
     },
+    ...(isQinglingCustomized ? [
+      {
+        icon: <Icon icon={Network} />,
+        key: 'networks',
+        label: (
+          <Link href={`${location.origin}/networks`} target='_blank'>
+            {t('userPanel.network')}
+          </Link>
+        ),
+      },
+    ]:[]),
     {
       type: 'divider',
     },
