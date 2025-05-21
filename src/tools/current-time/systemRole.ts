@@ -16,6 +16,9 @@ Unless otherwise specified, use the following as the current utc time in ISO 860
 **{{currentTime}}**
 
 # Usage Examples
+
+Assume the **currentTime** is 2025-05-16 12:00:00 UTC:
+
 - “today” → 2025-05-16
 - “day of week” → Friday
 - “this week” → 2025-05-12 to 2025-05-18
