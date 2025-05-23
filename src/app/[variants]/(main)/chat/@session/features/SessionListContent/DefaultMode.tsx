@@ -9,7 +9,7 @@ import { systemStatusSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { sessionSelectors } from '@/store/session/selectors';
 import { SessionDefaultGroup } from '@/types/session';
-import { useServerConfigStore } from '@/store/serverConfig';
+import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 
 import CollapseGroup from './CollapseGroup';
 import Actions from './CollapseGroup/Actions';
@@ -36,7 +36,7 @@ const DefaultMode = memo(() => {
     s.updateSystemStatus,
   ]);
 
-  const { isQinglingCustomized } = useServerConfigStore((s) => s.serverConfig);
+  const { showCreateSession } = useServerConfigStore(featureFlagsSelectors);
 
   const items = useMemo(
     () =>
@@ -44,13 +44,13 @@ const DefaultMode = memo(() => {
         pinnedSessions &&
           pinnedSessions.length > 0 && {
             children: <SessionList dataSource={pinnedSessions} />,
-            extra: isQinglingCustomized ? null : <Actions isPinned openConfigModal={() => setConfigGroupModalOpen(true)} />,
+            extra: showCreateSession ? <Actions isPinned openConfigModal={() => setConfigGroupModalOpen(true)} /> : null,
             key: SessionDefaultGroup.Pinned,
             label: t('pin'),
           },
         ...(customSessionGroups || []).map(({ id, name, children }) => ({
           children: <SessionList dataSource={children} groupId={id} />,
-          extra: isQinglingCustomized ? null :(
+          extra: showCreateSession ? (
             <Actions
               id={id}
               isCustomGroup
@@ -60,13 +60,13 @@ const DefaultMode = memo(() => {
               openConfigModal={() => setConfigGroupModalOpen(true)}
               openRenameModal={() => setRenameGroupModalOpen(true)}
             />
-          ),
+          ) : null,
           key: id,
           label: name,
         })),
         {
           children: <SessionList dataSource={defaultSessions || []} />,
-          extra: isQinglingCustomized ? null : <Actions openConfigModal={() => setConfigGroupModalOpen(true)} />,
+          extra: showCreateSession ? <Actions openConfigModal={() => setConfigGroupModalOpen(true)} /> : null,
           key: SessionDefaultGroup.Default,
           label: t('defaultList'),
         },
