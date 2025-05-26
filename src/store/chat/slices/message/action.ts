@@ -2,6 +2,11 @@
 // Disable the auto sort key eslint rule to make the code more logic and readable
 import { copyToClipboard } from '@lobehub/ui';
 import isEqual from 'fast-deep-equal';
+// @ts-ignore
+import { saveAs } from 'file-saver';
+// @ts-ignore
+import HTMLtoDOCX from 'html-docx-js/dist/html-docx';
+import { marked } from 'marked';
 import { SWRResponse, mutate } from 'swr';
 import { StateCreator } from 'zustand/vanilla';
 
@@ -59,6 +64,7 @@ export interface ChatMessageAction {
     topicId?: string,
   ) => SWRResponse<ChatMessage[]>;
   copyMessage: (id: string, content: string) => Promise<void>;
+  exportMessageDocx: (id: string, content: string) => Promise<void>;
   refreshMessages: () => Promise<void>;
 
   // =========  ↓ Internal Method ↓  ========== //
@@ -219,6 +225,16 @@ export const chatMessage: StateCreator<
 
     get().internal_traceMessage(id, { eventType: TraceEventType.CopyMessage });
   },
+
+  exportMessageDocx: async (id, content) => {
+    const html = marked(content); // 1. Markdown -> HTML
+    const htmlContent = `<!DOCTYPE html><html><body>${html}</body></html>`;
+    const docxBlob = HTMLtoDOCX.asBlob(htmlContent); // 2. HTML -> DOCX Blob
+    saveAs(docxBlob, `${id}.docx`); // 3. Trigger download
+
+    get().internal_traceMessage(id, { eventType: TraceEventType.ExportMessageDocx });
+  },
+
   toggleMessageEditing: (id, editing) => {
     set(
       { messageEditingIds: toggleBooleanList(get().messageEditingIds, id, editing) },

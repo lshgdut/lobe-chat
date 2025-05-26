@@ -152,6 +152,8 @@
   "duplicate": "创建副本",
   "edit": "编辑",
   "export": "导出配置",
+  "exportDocx": "导出为 Word 文档",
+  "exportSuccess": "导出成功",
   "exportType": {
     "agent": "导出助手设定",
     "agentWithMessage": "导出助手和消息",
