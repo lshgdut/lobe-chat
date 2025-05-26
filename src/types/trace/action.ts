@@ -24,8 +24,13 @@ export interface TraceEventRegenerateMessage {
   eventType: TraceEventType.RegenerateMessage;
 }
 
+export interface TraceEventExportMessageDocx {
+  eventType: TraceEventType.ExportMessageDocx;
+}
+
 export type TraceEventPayloads =
   | TraceEventCopyMessage
   | TraceEventModifyMessage
+  | TraceEventExportMessageDocx
   | TraceEventDeleteAndRegenerateMessage
   | TraceEventRegenerateMessage;
