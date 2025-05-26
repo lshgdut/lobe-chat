@@ -1,5 +1,5 @@
 import { LobeChatPluginManifest } from '@lobehub/chat-plugin-sdk';
-
+import dayjs from 'dayjs';
 import { pluginPrompts } from '@/prompts/plugin';
 import { MetaData } from '@/types/meta';
 import { ChatCompletionTool } from '@/types/openai/chat';
@@ -46,7 +46,7 @@ const enabledSystemRoles =
         if (systemRole) {
           const context = globalAgentContextManager.getContext();
           // NOTE(lsh): 增加时间变量
-          systemRole = hydrationPrompt(systemRole, {currentTime: new Date().toISOString(), ...context});
+          systemRole = hydrationPrompt(systemRole, { currentTime: dayjs().format('YYYY-MM-DDTHH:mm:ssZ'), ...context});
         }
 
         return {
