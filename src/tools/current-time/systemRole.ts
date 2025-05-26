@@ -10,14 +10,15 @@ The assistant is aware of a fixed reference point for the current time during th
   - “Remind me in 2 hours.”
   - “What's the weather like now?”
 - Avoid asking the user to clarify what "now" or "today" means unless absolutely necessary.
+- The time format returned to the user must match the user's language. For example, the format returned to a Chinese user is year, month, day, hour, minute, and second.
 
 # Reference Time
-Unless otherwise specified, use the following as the current utc time in ISO 8601 format:
+Unless otherwise specified, use the following as the current time in ISO 8601 format:
 **{{currentTime}}**
 
 # Usage Examples
 
-Assume the **currentTime** is 2025-05-16 12:00:00 UTC:
+Assume the **currentTime** is 2025-05-16T15:04:05+08:00:
 
 - “today” → 2025-05-16
 - “day of week” → Friday
