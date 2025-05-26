@@ -22,6 +22,7 @@ interface ChatListActionsBar {
   divider: { type: 'divider' };
   edit: ActionIconGroupItemType;
   export: ActionIconGroupItemType;
+  exportDocx: ActionIconGroupItemType;
   regenerate: ActionIconGroupItemType;
   share: ActionIconGroupItemType;
 }
@@ -74,6 +75,11 @@ export const useChatListActionsBar = ({
         icon: DownloadIcon,
         key: 'export',
         label: '导出为 PDF',
+      },
+      exportDocx: {
+        icon: DownloadIcon,
+        key: 'exportDocx',
+        label: t('exportDocx', { defaultValue: 'Export as Docx' }),
       },
       regenerate: {
         icon: RotateCcw,
