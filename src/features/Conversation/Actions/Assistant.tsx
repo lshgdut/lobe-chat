@@ -29,6 +29,7 @@ export const AssistantActionsBar: RenderAction = memo(({ onActionClick, error, t
     del,
     branching,
     // export: exportPDF,
+    exportDocx,
     share,
   } = useChatListActionsBar({ hasThread });
 
@@ -61,6 +62,7 @@ export const AssistantActionsBar: RenderAction = memo(({ onActionClick, error, t
           divider,
           share,
           // exportPDF,
+          exportDocx,
           divider,
           regenerate,
           delAndRegenerate,

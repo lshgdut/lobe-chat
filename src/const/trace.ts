@@ -20,6 +20,7 @@ export enum TraceNameMap {
 export enum TraceEventType {
   CopyMessage = 'Copy Message',
   DeleteAndRegenerateMessage = 'Delete And Regenerate Message',
+  ExportMessageDocx = 'Export Message as Docx',
   ModifyMessage = 'Modify Message',
   RegenerateMessage = 'Regenerate Message',
 }
