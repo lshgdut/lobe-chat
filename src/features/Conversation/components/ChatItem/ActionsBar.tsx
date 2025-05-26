@@ -45,6 +45,7 @@ const Actions = memo<ActionsProps>(({ id, inPortalThread, index }) => {
     ttsMessage,
     delAndRegenerateMessage,
     copyMessage,
+    exportMessageDocx,
     openThreadCreator,
     resendThreadMessage,
     delAndResendThreadMessage,
@@ -56,6 +57,7 @@ const Actions = memo<ActionsProps>(({ id, inPortalThread, index }) => {
     s.ttsMessage,
     s.delAndRegenerateMessage,
     s.copyMessage,
+    s.exportMessageDocx,
     s.openThreadCreator,
     s.resendThreadMessage,
     s.delAndResendThreadMessage,
@@ -114,6 +116,12 @@ const Actions = memo<ActionsProps>(({ id, inPortalThread, index }) => {
 
         case 'tts': {
           ttsMessage(id);
+          break;
+        }
+
+        case 'exportDocx': {
+          await exportMessageDocx(id, item.content);
+          message.success(t('exportSuccess', { defaultValue: 'Export Docx Success' }));
           break;
         }
 
