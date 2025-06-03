@@ -66,6 +66,7 @@ beforeEach(() => {
     isServerMode: false,
     isDeprecatedEdition: true,
     isDesktop: false,
+    isQinglingCustomized: false,
   }));
 });
 
