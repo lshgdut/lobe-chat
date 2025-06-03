@@ -3,7 +3,7 @@ import { SWRResponse, mutate } from 'swr';
 import { StateCreator } from 'zustand/vanilla';
 
 import { DEFAULT_MODEL_PROVIDER_LIST } from '@/config/modelProviders';
-import { isDeprecatedEdition, isDesktop, isUsePgliteDB } from '@/const/version';
+import { isDeprecatedEdition, isDesktop, isUsePgliteDB, isQinglingCustomized } from '@/const/version';
 import { useClientDataSWR } from '@/libs/swr';
 import { aiProviderService } from '@/services/aiProvider';
 import { AiInfraStore } from '@/store/aiInfra/store';
@@ -182,14 +182,15 @@ export const createAiProviderSlice: StateCreator<
         ).map((item) => ({ id: item.id, name: item.name, source: 'builtin' }));
         const allModels = LOBE_DEFAULT_MODEL_LIST;
         return {
-          enabledAiModels: allModels.filter((m) => m.enabled),
-          enabledAiProviders: enabledAiProviders,
-          enabledChatAiProviders: enabledAiProviders.filter((provider) => {
+          // NOTE(lsh): 未登录时不显示任何模型
+          enabledAiModels: isQinglingCustomized ? [] : allModels.filter((m) => m.enabled),
+          enabledAiProviders: isQinglingCustomized ? [] : enabledAiProviders,
+          enabledChatAiProviders: isQinglingCustomized ? [] : enabledAiProviders.filter((provider) => {
             return allModels.some(
               (model) => model.providerId === provider.id && model.type === 'chat',
             );
           }),
-          enabledImageAiProviders: enabledAiProviders
+          enabledImageAiProviders: isQinglingCustomized ? [] : enabledAiProviders
             .filter((provider) => {
               return allModels.some(
                 (model) => model.providerId === provider.id && model.type === 'image',

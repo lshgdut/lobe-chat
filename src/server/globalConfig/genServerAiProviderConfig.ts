@@ -5,6 +5,8 @@ import { AiFullModelCard } from '@/types/aiModel';
 import { ProviderConfig } from '@/types/user/settings';
 import { extractEnabledModels, transformToAiModelList } from '@/utils/parseModels';
 
+import { isQinglingCustomized } from '@/const/version';
+
 interface ProviderSpecificConfig {
   enabled?: boolean;
   enabledKey?: string;
@@ -31,10 +33,11 @@ export const genServerAiProvidersConfig = (specificConfig: Record<any, ProviderS
         process.env[providerConfig.modelListKey ?? `${providerUpperCase}_MODEL_LIST`];
 
       config[provider] = {
-        enabled:
+        enabled: isQinglingCustomized ? (llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`]) : (
           typeof providerConfig.enabled !== 'undefined'
             ? providerConfig.enabled
-            : llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`],
+            : llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`]
+        ),
 
         enabledModels: extractEnabledModels(
           provider,
