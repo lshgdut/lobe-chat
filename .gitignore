@@ -76,3 +76,8 @@ vertex-ai-key.json
 
 # for local prd docs
 docs/prd
+
+# for qingling
+.codebuddy
+.devcontainer
+
