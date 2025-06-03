@@ -9,7 +9,7 @@ import { getServerDefaultAgentConfig, getServerDefaultFilesConfig } from './inde
 import { parseAgentConfig } from './parseDefaultAgent';
 import { parseFilesConfig } from './parseFilesConfig';
 
-vi.mock('@/config/app', async (importOriginal) => {
+vi.mock('@/envs/app', async (importOriginal) => {
   const actual = (await importOriginal()) as any;
   return {
     ...actual,
