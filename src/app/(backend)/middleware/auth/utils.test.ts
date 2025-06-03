@@ -22,7 +22,7 @@ vi.mock('@/const/auth', async (importOriginal) => {
   };
 });
 
-vi.mock('@/config/app', async (importOriginal) => {
+vi.mock('@/envs/app', async (importOriginal) => {
   const actual = (await importOriginal()) as any;
   return {
     ...actual,
