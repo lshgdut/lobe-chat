@@ -3,7 +3,7 @@ import urlJoin from 'url-join';
 
 import { withBasePath } from '@/utils/basePath';
 import { isDev, isOnServerSide } from '@/utils/env';
-import { appEnv } from '@/config/app';
+import { appEnv } from '@/envs/app';
 
 import pkg from '../../package.json';
 import { INBOX_SESSION_ID } from './session';
