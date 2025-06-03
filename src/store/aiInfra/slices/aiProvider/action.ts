@@ -3,7 +3,7 @@ import { SWRResponse, mutate } from 'swr';
 import { StateCreator } from 'zustand/vanilla';
 
 import { DEFAULT_MODEL_PROVIDER_LIST } from '@/config/modelProviders';
-import { isDeprecatedEdition, isDesktop, isUsePgliteDB } from '@/const/version';
+import { isDeprecatedEdition, isDesktop, isUsePgliteDB, isQinglingCustomized } from '@/const/version';
 import { useClientDataSWR } from '@/libs/swr';
 import { aiProviderService } from '@/services/aiProvider';
 import { AiInfraStore } from '@/store/aiInfra/store';
@@ -176,8 +176,9 @@ export const createAiProviderSlice: StateCreator<
 
         const { LOBE_DEFAULT_MODEL_LIST } = await import('@/config/aiModels');
         return {
-          enabledAiModels: LOBE_DEFAULT_MODEL_LIST.filter((m) => m.enabled),
-          enabledAiProviders: DEFAULT_MODEL_PROVIDER_LIST.filter(
+          // NOTE(lsh): 未登录时不显示任何模型
+          enabledAiModels: isQinglingCustomized ? [] : LOBE_DEFAULT_MODEL_LIST.filter((m) => m.enabled),
+          enabledAiProviders: isQinglingCustomized ? [] : DEFAULT_MODEL_PROVIDER_LIST.filter(
             (provider) => provider.enabled,
           ).map((item) => ({ id: item.id, name: item.name, source: 'builtin' })),
           runtimeConfig: {},
