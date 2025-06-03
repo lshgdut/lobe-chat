@@ -5,6 +5,8 @@ import { AiFullModelCard } from '@/types/aiModel';
 import { ProviderConfig } from '@/types/user/settings';
 import { extractEnabledModels, transformToAiChatModelList } from '@/utils/parseModels';
 
+import { isQinglingCustomized } from '@/const/version';
+
 interface ProviderSpecificConfig {
   enabled?: boolean;
   enabledKey?: string;
@@ -33,10 +35,11 @@ export const genServerAiProvidersConfig = (specificConfig: Record<any, ProviderS
       const defaultChatModels = providerCard.filter((c) => c.type === 'chat');
 
       config[provider] = {
-        enabled:
+        enabled: isQinglingCustomized ? (llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`]) : (
           typeof providerConfig.enabled !== 'undefined'
             ? providerConfig.enabled
-            : llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`],
+            : llmConfig[providerConfig.enabledKey || `ENABLED_${providerUpperCase}`]
+        ),
 
         enabledModels: extractEnabledModels(
           providerModelList,
