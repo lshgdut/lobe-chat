@@ -6,6 +6,7 @@ import { memo } from 'react';
 import { Trans } from 'react-i18next';
 import { Center } from 'react-layout-kit';
 
+import { isQinglingCustomized } from '@/const/version';
 import { MORE_MODEL_PROVIDER_REQUEST_URL } from '@/const/url';
 
 const Footer = memo(() => {
@@ -21,6 +22,7 @@ const Footer = memo(() => {
       width={'100%'}
     >
       <div style={{ color: theme.colorTextSecondary, fontSize: 12, textAlign: 'center' }}>
+        {isQinglingCustomized ? "更多模型正在计划接入中 ，敬请期待" :
         <Trans i18nKey="llm.waitingForMore" ns={'setting'}>
           更多模型正在
           <Link aria-label={'todo'} href={MORE_MODEL_PROVIDER_REQUEST_URL} target="_blank">
@@ -28,6 +30,7 @@ const Footer = memo(() => {
           </Link>
           中 ，敬请期待
         </Trans>
+        }
       </div>
     </Center>
   );

@@ -6,6 +6,7 @@ import React, { ComponentType, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
+import { isQinglingCustomized } from '@/const/version';
 import { MORE_FILE_PREVIEW_REQUEST_URL } from '@/const/url';
 import { downloadFile } from '@/utils/client/downloadFile';
 
@@ -37,12 +38,16 @@ const NotSupport: ComponentType<{
         <Flexbox align={'center'} gap={12}>
           <FluentEmoji emoji={'👀'} size={64} />
           <Flexbox style={{ textAlign: 'center' }}>
-            <Trans i18nKey="preview.unsupportedFileAndContact" ns={'file'}>
-              此文件格式暂不支持在线预览，如有预览诉求，欢迎
-              <Link aria-label={'todo'} href={MORE_FILE_PREVIEW_REQUEST_URL} target="_blank">
-                反馈给我们
-              </Link>
-            </Trans>
+            {isQinglingCustomized ?
+              "此文件格式暂不支持在线预览"
+              :
+              <Trans i18nKey="preview.unsupportedFileAndContact" ns={'file'}>
+                此文件格式暂不支持在线预览，如有预览诉求，欢迎
+                <Link aria-label={'todo'} href={MORE_FILE_PREVIEW_REQUEST_URL} target="_blank">
+                  反馈给我们
+                </Link>
+              </Trans>
+            }
           </Flexbox>
           <Button
             loading={loading}
