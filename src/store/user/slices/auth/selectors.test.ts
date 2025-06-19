@@ -26,6 +26,9 @@ vi.mock('@/const/version', () => ({
   get isDesktop() {
     return isDesktop;
   },
+  get isQinglingCustomized() {
+    return false;
+  },
 }));
 
 afterEach(() => {
