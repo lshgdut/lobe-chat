@@ -17,4 +17,4 @@ export const isCustomBranding = BRANDING_NAME !== 'LobeChat';
 export const isCustomORG = ORG_NAME !== 'LobeHub';
 
 // 是否清岭定制版本
-export const isQinglingCustomized = process.env.QINGLING_CUSTOMIZED !== '0';
+export { isQinglingCustomized } from './branding';
