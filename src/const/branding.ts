@@ -1,7 +1,9 @@
 // the code below can only be modified with commercial license
 // if you want to use it in the commercial usage
 // please contact us for more information: hello@lobehub.com
-import { isQinglingCustomized } from "./version";
+
+// 是否清岭定制版本
+export const isQinglingCustomized = process.env.QINGLING_CUSTOMIZED === '1';
 
 export const LOBE_CHAT_CLOUD = isQinglingCustomized ? 'QINGLING Copilot Cloud' : 'LobeChat Cloud';
 
