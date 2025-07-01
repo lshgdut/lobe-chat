@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
   ...(isStandaloneMode ? standaloneConfig : {}),
   basePath,
   compress: isProd,
+  env: {
+    QINGLING_CUSTOMIZED: "1",
+  },
   experimental: {
     optimizePackageImports: [
       'emoji-mart',
