@@ -51,6 +51,7 @@ const CommonSTT = memo<{
     return (
       <Dropdown
         menu={{
+          // @ts-ignore
           activeKey: 'time',
           items: [
             {

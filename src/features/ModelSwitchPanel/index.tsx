@@ -141,6 +141,7 @@ const ModelSwitchPanel = memo<IProps>(({ children, onOpenChange, open }) => {
   return (
     <ActionDropdown
       menu={{
+        // @ts-ignore
         activeKey: menuKey(provider, model),
         className: styles.menu,
         items,
