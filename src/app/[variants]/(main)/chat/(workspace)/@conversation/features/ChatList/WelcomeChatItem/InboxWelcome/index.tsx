@@ -10,6 +10,8 @@ import { BRANDING_NAME } from '@/const/branding';
 import { isCustomBranding } from '@/const/version';
 import { useGreeting } from '@/hooks/useGreeting';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
+import { useUserStore } from '@/store/user';
+import { userProfileSelectors } from '@/store/user/selectors';
 
 import AddButton from './AddButton';
 import AgentsSuggest from './AgentsSuggest';
@@ -47,12 +49,19 @@ const InboxWelcome = memo(() => {
   const greeting = useGreeting();
   const { showWelcomeSuggest, showCreateSession } = useServerConfigStore(featureFlagsSelectors);
 
+  const [nickname] = useUserStore((s) => [
+    userProfileSelectors.nickName(s),
+  ]);
+
   return (
     <Center padding={16} width={'100%'}>
       <Flexbox className={styles.container} gap={16} style={{ maxWidth: 800 }} width={'100%'}>
         <Flexbox align={'center'} gap={8} horizontal>
           <FluentEmoji emoji={'👋'} size={40} type={'anim'} />
-          <h1 className={styles.title}>{greeting}</h1>
+          <h1 className={styles.title}>
+            {greeting}
+            {isCustomBranding && nickname ? `, ${nickname}` : ''}
+          </h1>
         </Flexbox>
         <Markdown
           className={styles.desc}
