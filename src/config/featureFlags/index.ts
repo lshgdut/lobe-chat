@@ -1,7 +1,7 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
-import { isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
 import { merge } from '@/utils/merge';
 
 import { DEFAULT_FEATURE_FLAGS, QINGLING_FEATURE_FLAGS, mapFeatureFlagsEnvToState } from './schema';

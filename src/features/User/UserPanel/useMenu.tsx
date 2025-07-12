@@ -23,7 +23,7 @@ import { Flexbox } from 'react-layout-kit';
 
 import type { MenuProps } from '@/components/Menu';
 import { enableAuth } from '@/const/auth';
-import { BRANDING_EMAIL, LOBE_CHAT_CLOUD, SOCIAL_URL } from '@/const/branding';
+import { BRANDING_EMAIL, LOBE_CHAT_CLOUD, SOCIAL_URL, isQinglingCustomized } from '@/const/branding';
 import { DEFAULT_HOTKEY_CONFIG } from '@/const/settings';
 import {
   CHANGELOG,
@@ -33,7 +33,7 @@ import {
   UTM_SOURCE,
   mailTo,
 } from '@/const/url';
-import { isDesktop, isQinglingCustomized } from '@/const/version';
+import { isDesktop } from '@/const/version';
 import DataImporter from '@/features/DataImporter';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';

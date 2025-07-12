@@ -6,7 +6,7 @@ import { memo } from 'react';
 import { Trans } from 'react-i18next';
 import { Center } from 'react-layout-kit';
 
-import { isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
 import { MORE_MODEL_PROVIDER_REQUEST_URL } from '@/const/url';
 
 const Footer = memo(() => {

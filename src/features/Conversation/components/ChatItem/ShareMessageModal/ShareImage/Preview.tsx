@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import pkg from '@/../package.json';
-import { isQinglingCustomized } from '@/const/version'
+import { isQinglingCustomized } from '@/const/branding';
 import { ProductLogo } from '@/components/Branding';
 import { ChatItem } from '@/features/Conversation';
 import PluginTag from '@/features/PluginTag';

@@ -15,6 +15,3 @@ export const isDeprecatedEdition = !isServerMode && !isUsePgliteDB;
 export const isCustomBranding = BRANDING_NAME !== 'LobeChat';
 // @ts-ignore
 export const isCustomORG = ORG_NAME !== 'LobeHub';
-
-// 是否清岭定制版本
-export { isQinglingCustomized } from './branding';

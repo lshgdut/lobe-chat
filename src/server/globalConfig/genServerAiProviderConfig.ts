@@ -5,7 +5,7 @@ import { AiFullModelCard } from '@/types/aiModel';
 import { ProviderConfig } from '@/types/user/settings';
 import { extractEnabledModels, transformToAiModelList } from '@/utils/parseModels';
 
-import { isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
 
 interface ProviderSpecificConfig {
   enabled?: boolean;

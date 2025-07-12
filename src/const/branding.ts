@@ -3,7 +3,7 @@
 // please contact us for more information: hello@lobehub.com
 
 // 是否清岭定制版本
-export const isQinglingCustomized = process.env.QINGLING_CUSTOMIZED === '1';
+export const isQinglingCustomized = process.env.NEXT_PUBLIC_QINGLING_CUSTOMIZED === '1';
 
 export const LOBE_CHAT_CLOUD = isQinglingCustomized ? 'QINGLING Copilot Cloud' : 'LobeChat Cloud';
 

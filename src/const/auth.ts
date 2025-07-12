@@ -1,4 +1,4 @@
-import { isQinglingCustomized } from '@/const/version'
+import { isQinglingCustomized } from '@/const/branding';
 import { authEnv } from '@/config/auth';
 
 export const enableClerk = authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH;

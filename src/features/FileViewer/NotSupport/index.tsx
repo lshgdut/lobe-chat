@@ -6,7 +6,7 @@ import React, { ComponentType, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
-import { isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
 import { MORE_FILE_PREVIEW_REQUEST_URL } from '@/const/url';
 import { downloadFile } from '@/utils/client/downloadFile';
 
