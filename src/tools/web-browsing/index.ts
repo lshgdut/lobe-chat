@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import { isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
 import { BuiltinToolManifest } from '@/types/tool';
 
 import { systemPrompt } from './systemRole';

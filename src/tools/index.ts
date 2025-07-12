@@ -1,4 +1,5 @@
-import { isDesktop, isQinglingCustomized } from '@/const/version';
+import { isQinglingCustomized } from '@/const/branding';
+import { isDesktop } from '@/const/version';
 import { LobeBuiltinTool } from '@/types/tool';
 
 import { ArtifactsManifest } from './artifacts';
