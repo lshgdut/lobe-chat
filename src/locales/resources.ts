@@ -2,6 +2,24 @@ import { DEFAULT_LANG } from '@/const/locale';
 
 import resources from './default';
 
+export const all_locales = [
+  'ar',
+  'bg-BG',
+  'de-DE',
+  'en-US',
+  'es-ES',
+  'fr-FR',
+  'ja-JP',
+  'ko-KR',
+  'pt-BR',
+  'ru-RU',
+  'tr-TR',
+  'zh-CN',
+  'zh-TW',
+  'vi-VN',
+  'fa-IR',
+] as const;
+
 export const locales = [
   // 'ar',
   // 'bg-BG',
@@ -22,7 +40,7 @@ export const locales = [
 
 export type DefaultResources = typeof resources;
 export type NS = keyof DefaultResources;
-export type Locales = (typeof locales)[number];
+export type Locales = (typeof all_locales)[number];
 
 export const normalizeLocale = (locale?: string): Locales => {
   if (!locale) return DEFAULT_LANG;
