@@ -46,6 +46,20 @@ const partialBuildPages = [
     disabled: !isDesktop,
     paths: ['src/app/(backend)/trpc/desktop'],
   },
+  {
+    name: 'public-index',
+    disabled: true,
+    paths: [
+      'public/agents-index/LICENSE',
+      'public/agents-index/package.json',
+      'public/agents-index/README.md',
+      'public/agents-index/README.zh-CN.md',
+      'public/plugins-index/LICENSE',
+      'public/plugins-index/package.json',
+      'public/plugins-index/README.md',
+      'public/plugins-index/README.zh-CN.md',
+    ],
+  },
 ];
 /* eslint-enable */
 

@@ -29,10 +29,11 @@
     "packages/*"
   ],
   "scripts": {
-    "prebuild": "tsx scripts/prebuild.mts",
+    "prebuild": "npm run build-public && tsx scripts/prebuild.mts",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=6144 next build",
     "postbuild": "npm run build-sitemap && npm run build-migrate-db",
     "build-migrate-db": "bun run db:migrate",
+    "build-public": "tsx ./scripts/buildPublicIndex/index.ts",
     "build-sitemap": "tsx ./scripts/buildSitemapIndex/index.ts",
     "build:analyze": "NODE_OPTIONS=--max-old-space-size=6144 ANALYZE=true next build",
     "build:docker": "npm run prebuild && DOCKER=true next build && npm run build-sitemap",
@@ -166,6 +167,7 @@
     "@trpc/next": "^11.1.4",
     "@trpc/react-query": "^11.2.0",
     "@trpc/server": "^11.2.0",
+    "@types/pacote": "^11.1.8",
     "@vercel/analytics": "^1.5.0",
     "@vercel/edge-config": "^1.4.0",
     "@vercel/functions": "^2.1.0",
@@ -225,6 +227,7 @@
     "ollama": "^0.5.16",
     "openai": "^4.104.0",
     "openapi-fetch": "^0.9.8",
+    "pacote": "^21.0.0",
     "partial-json": "^0.1.7",
     "path-browserify-esm": "^1.0.6",
     "pdf-parse": "^1.1.1",
